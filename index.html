@@ -29,9 +29,24 @@
         <button type="button" id="lang-ja" class="active" onclick="setLang('ja')">日本語</button>
         <button type="button" id="lang-en" onclick="setLang('en')">EN</button>
       </div>
+      <button type="button" class="menu-toggle" onclick="openMenu()" aria-label="メニュー">☰</button>
     </div>
   </div>
 </header>
+
+<div class="mobile-menu" id="mobile-menu" onclick="if(event.target===this) closeMenu()">
+  <div class="mobile-menu-panel">
+    <div class="mobile-menu-head">
+      <a href="#top" class="logo">🐾 Re:Neko</a>
+      <button type="button" class="mobile-menu-close" onclick="closeMenu()" aria-label="閉じる">×</button>
+    </div>
+    <a href="#about" onclick="closeMenu()" id="mnav-about">about</a>
+    <a href="cats.html" onclick="closeMenu()" id="mnav-cats">里親募集</a>
+    <a href="#duo" onclick="closeMenu()" id="mnav-duo">メンバー</a>
+    <a href="#donate" onclick="closeMenu()" id="mnav-donate">寄付</a>
+    <a href="#foster" onclick="closeMenu()" id="mnav-foster">応募方法</a>
+  </div>
+</div>
 
 <div id="top"></div>
 
@@ -255,6 +270,11 @@ const I18N = {
   'nav-duo':          { ja:'メンバー',          en:'Team' },
   'nav-donate':       { ja:'寄付',              en:'Donate' },
   'nav-foster':       { ja:'応募方法',          en:'How to Adopt' },
+  'mnav-about':       { ja:'about',            en:'About' },
+  'mnav-cats':        { ja:'里親募集',          en:'Cats' },
+  'mnav-duo':         { ja:'メンバー',          en:'Team' },
+  'mnav-donate':      { ja:'寄付',              en:'Donate' },
+  'mnav-foster':      { ja:'応募方法',          en:'How to Adopt' },
 
   'hero-h1':          { ja:'小さな命に、<br>もう一度おうちを。', en:'A second chance<br>at a happy life.' },
   'hero-p':           { ja:'Re:Neko(リネコ)は、マレーシア・クアラルンプールを拠点に活動する保護猫ボランティア団体です。行き場のない猫たちをレスキューし、大切に育て、あたたかい里親さんへとつなぐ「Rescue, Rehome &amp; Return」を合言葉に活動しています。',
@@ -357,6 +377,15 @@ function setLang(lang){
   try{ lang = localStorage.getItem('reneko-lang') || 'ja'; }catch(e){}
   setLang(lang);
 })();
+
+function openMenu(){
+  document.getElementById('mobile-menu').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeMenu(){
+  document.getElementById('mobile-menu').classList.remove('open');
+  document.body.style.overflow = '';
+}
 </script>
 
 </body>

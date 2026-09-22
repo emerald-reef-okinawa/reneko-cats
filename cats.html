@@ -29,9 +29,24 @@
         <button type="button" id="lang-ja" class="active" onclick="setLang('ja')">日本語</button>
         <button type="button" id="lang-en" onclick="setLang('en')">EN</button>
       </div>
+      <button type="button" class="menu-toggle" onclick="openMenu()" aria-label="メニュー">☰</button>
     </div>
   </div>
 </header>
+
+<div class="mobile-menu" id="mobile-menu" onclick="if(event.target===this) closeMenu()">
+  <div class="mobile-menu-panel">
+    <div class="mobile-menu-head">
+      <a href="index.html" class="logo">🐾 Re:Neko</a>
+      <button type="button" class="mobile-menu-close" onclick="closeMenu()" aria-label="閉じる">×</button>
+    </div>
+    <a href="index.html#about" onclick="closeMenu()" id="mnav-about">about</a>
+    <a href="cats.html" onclick="closeMenu()" id="mnav-cats">里親募集</a>
+    <a href="index.html#duo" onclick="closeMenu()" id="mnav-duo">メンバー</a>
+    <a href="index.html#donate" onclick="closeMenu()" id="mnav-donate">寄付</a>
+    <a href="index.html#foster" onclick="closeMenu()" id="mnav-foster">応募方法</a>
+  </div>
+</div>
 
 <div class="wrap cats-hero">
   <h1 id="page-h1">里親募集中の子たち</h1>
@@ -83,6 +98,11 @@ const I18N = {
   'nav-duo':          { ja:'メンバー',          en:'Team' },
   'nav-donate':       { ja:'寄付',              en:'Donate' },
   'nav-foster':       { ja:'応募方法',          en:'How to Adopt' },
+  'mnav-about':       { ja:'about',            en:'About' },
+  'mnav-cats':        { ja:'里親募集',          en:'Cats' },
+  'mnav-duo':         { ja:'メンバー',          en:'Team' },
+  'mnav-donate':      { ja:'寄付',              en:'Donate' },
+  'mnav-foster':      { ja:'応募方法',          en:'How to Adopt' },
   'page-h1':          { ja:'里親募集中の子たち', en:'Cats Looking for Homes' },
   'page-p':           { ja:'現在リネコがお世話をしている猫たちと、卒業していった猫たちの一覧です。', en:'Here are the cats currently in our care, and the ones who&rsquo;ve already found their forever homes.' },
   'back-link':        { ja:'← トップページに戻る', en:'&larr; Back to Home' },
@@ -146,14 +166,62 @@ function renderCats(){
     : `<div class="empty-note" style="grid-column:1/-1;">${emptyAdopted}</div>`;
 }
 
+// Google Sheets CSV export URL (set once the sheet is shared). Falls back to cats.json when empty.
+const SHEET_CSV_URL = '';
+
+function parseCSV(text){
+  const rows = [];
+  let row = [], field = '', inQuotes = false;
+  for(let i = 0; i < text.length; i++){
+    const c = text[i];
+    if(inQuotes){
+      if(c === '"'){
+        if(text[i + 1] === '"'){ field += '"'; i++; }
+        else inQuotes = false;
+      }else field += c;
+    }else{
+      if(c === '"') inQuotes = true;
+      else if(c === ','){ row.push(field); field = ''; }
+      else if(c === '\n' || c === '\r'){
+        if(c === '\r' && text[i + 1] === '\n') i++;
+        row.push(field); field = '';
+        rows.push(row); row = [];
+      }else field += c;
+    }
+  }
+  if(field.length || row.length){ row.push(field); rows.push(row); }
+  if(!rows.length) return [];
+  const headers = rows[0].map(h => h.trim());
+  return rows.slice(1).filter(r => r.some(v => v.trim() !== '')).map(r => {
+    const obj = {};
+    headers.forEach((h, i) => { obj[h] = (r[i] || '').trim(); });
+    return obj;
+  });
+}
+
 async function loadCats(){
   try{
-    const res = await fetch('cats.json?_=' + Date.now());
-    allCats = await res.json();
+    if(SHEET_CSV_URL){
+      const res = await fetch(SHEET_CSV_URL + (SHEET_CSV_URL.includes('?') ? '&' : '?') + '_=' + Date.now());
+      const text = await res.text();
+      allCats = parseCSV(text);
+    }else{
+      const res = await fetch('cats.json?_=' + Date.now());
+      allCats = await res.json();
+    }
   }catch(e){
     allCats = [];
   }
   renderCats();
+}
+
+function openMenu(){
+  document.getElementById('mobile-menu').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeMenu(){
+  document.getElementById('mobile-menu').classList.remove('open');
+  document.body.style.overflow = '';
 }
 
 (function(){
