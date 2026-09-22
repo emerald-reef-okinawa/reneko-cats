@@ -38,8 +38,13 @@ header.site{
   gap:12px;
 }
 .logo{
-  display:flex;align-items:center;gap:8px;
+  display:flex;align-items:center;gap:10px;
   font-weight:800;font-size:1.4rem;color:var(--coral-dark);
+  flex:0 0 auto;
+}
+.logo img{
+  width:42px;height:42px;border-radius:50%;object-fit:cover;
+  border:2px solid #fff;box-shadow:0 2px 8px rgba(74,54,48,.15);
   flex:0 0 auto;
 }
 .logo small{
@@ -68,20 +73,51 @@ header.site{
 }
 .mobile-menu.open{display:block;}
 .mobile-menu-panel{
-  background:var(--cream);width:78%;max-width:300px;height:100%;margin-left:auto;
-  padding:20px;box-shadow:-8px 0 24px rgba(0,0,0,.15);
+  background:linear-gradient(165deg,var(--cream) 0%,var(--cream-deep) 100%);
+  width:80%;max-width:310px;height:100%;margin-left:auto;
+  padding:22px;box-shadow:-8px 0 24px rgba(0,0,0,.15);
   display:flex;flex-direction:column;gap:4px;
+  position:relative;overflow:hidden;
 }
-.mobile-menu-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.mobile-menu-panel::before{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.55;
+  background-image:
+    radial-gradient(circle at 8px 8px, rgba(240,100,90,.12) 2.6px, transparent 2.8px),
+    radial-gradient(circle at 2px 14px, rgba(240,100,90,.12) 1.6px, transparent 1.8px),
+    radial-gradient(circle at 14px 14px, rgba(240,100,90,.12) 1.6px, transparent 1.8px);
+  background-size:36px 36px;
+}
+.mobile-menu-head{
+  display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;
+  position:relative;z-index:1;
+}
 .mobile-menu-head .logo{font-size:1.1rem;}
 .mobile-menu-close{
   background:#fff;border:2px solid var(--cream-deep);border-radius:50%;
   width:36px;height:36px;font-size:1.2rem;cursor:pointer;color:var(--text-soft);
   display:flex;align-items:center;justify-content:center;
 }
-.mobile-menu-panel a{
-  padding:14px 16px;border-radius:14px;font-weight:700;font-size:1rem;color:var(--text);
-  background:#fff;margin-bottom:8px;
+.mobile-menu-links{position:relative;z-index:1;display:flex;flex-direction:column;gap:10px;}
+.mobile-menu-links a{
+  display:flex;align-items:center;gap:12px;
+  padding:12px 16px;border-radius:18px;font-weight:800;font-size:1rem;color:var(--text);
+  background:#fff;box-shadow:0 6px 14px rgba(74,54,48,.08);
+  border:2px solid transparent;
+  transition:transform .12s ease;
+}
+.mobile-menu-links a:active{transform:scale(.97);}
+.mobile-menu-links a .m-icon{
+  width:38px;height:38px;border-radius:50%;flex:0 0 auto;
+  display:flex;align-items:center;justify-content:center;font-size:1.15rem;
+}
+.mobile-menu-links a:nth-child(1) .m-icon{background:#FFE3E0;}
+.mobile-menu-links a:nth-child(2) .m-icon{background:#FFF1CE;}
+.mobile-menu-links a:nth-child(3) .m-icon{background:#FFE3EC;}
+.mobile-menu-links a:nth-child(4) .m-icon{background:#DFF4EE;}
+.mobile-menu-links a:nth-child(5) .m-icon{background:#E3E9FF;}
+.mobile-menu-paw{
+  position:absolute;z-index:0;font-size:5rem;opacity:.12;
+  bottom:10px;right:-10px;transform:rotate(-18deg);pointer-events:none;
 }
 
 .lang-toggle{
@@ -292,17 +328,31 @@ a.activity-card:hover{transform:translateY(-4px);}
 }
 @media(max-width:640px){ .foster-steps{grid-template-columns:1fr;} }
 .step{
-  background:#fff;border-radius:18px;padding:18px 20px;
+  background:#fff;border-radius:22px 22px 22px 6px;padding:18px 20px;
   display:flex;gap:14px;align-items:flex-start;
   border:2px solid var(--cream-deep);
+  box-shadow:0 8px 18px rgba(74,54,48,.07);
+  position:relative;
 }
+.step:nth-child(odd){transform:rotate(-.6deg);}
+.step:nth-child(even){transform:rotate(.6deg);}
 .step .num{
-  flex:0 0 auto;width:34px;height:34px;border-radius:50%;
-  background:var(--coral);color:#fff;font-weight:800;
-  display:flex;align-items:center;justify-content:center;font-size:.9rem;
+  flex:0 0 auto;width:40px;height:40px;border-radius:50%;
+  color:#fff;font-weight:800;
+  display:flex;align-items:center;justify-content:center;font-size:1rem;
+  border:3px solid #fff;box-shadow:0 4px 10px rgba(74,54,48,.18);
 }
+.step:nth-child(1) .num{background:linear-gradient(160deg,#FF9A8B,var(--coral));}
+.step:nth-child(2) .num{background:linear-gradient(160deg,#FFD37A,#FFB454);}
+.step:nth-child(3) .num{background:linear-gradient(160deg,#FF9FC0,var(--pink));}
+.step:nth-child(4) .num{background:linear-gradient(160deg,#8FE3C9,#4FBBA0);}
+.step:nth-child(5) .num{background:linear-gradient(160deg,#9FB8FF,#6E8CF0);}
 .step p{font-size:.88rem;color:var(--text-soft);}
 .step strong{display:block;color:var(--text);margin-bottom:2px;}
+.step::after{
+  content:"🐾";position:absolute;bottom:-8px;right:10px;
+  font-size:1rem;opacity:.5;
+}
 
 .form-wrap{
   background:#fff;border-radius:var(--radius);padding:16px;
@@ -329,18 +379,24 @@ footer .copyright{font-size:.75rem;opacity:.7;margin-top:14px;}
 /* ---------- Fixed bottom action bar ---------- */
 .fixed-bar{
   position:fixed;left:0;right:0;bottom:0;z-index:100;
-  display:flex;gap:10px;
-  padding:10px 14px calc(10px + env(safe-area-inset-bottom));
-  background:#fff;
-  box-shadow:0 -6px 20px rgba(74,54,48,.15);
-  border-top:2px solid var(--cream-deep);
+  display:flex;justify-content:space-between;
+  padding:0 14px calc(14px + env(safe-area-inset-bottom));
+  pointer-events:none;
 }
 .fixed-bar a{
-  flex:1;display:flex;align-items:center;justify-content:center;gap:6px;
-  padding:13px 10px;border-radius:999px;font-weight:800;font-size:.92rem;
+  pointer-events:auto;position:relative;
+  display:inline-flex;align-items:center;gap:6px;
+  padding:14px 20px;border-radius:999px;font-weight:800;font-size:.88rem;
+  box-shadow:0 8px 18px rgba(74,54,48,.28);
+  border:3px solid #fff;
 }
 .fixed-bar .fb-foster{background:var(--yellow);color:var(--text);}
 .fixed-bar .fb-donate{background:var(--coral);color:#fff;}
+.fixed-bar a .paw-badge{
+  position:absolute;top:-12px;left:-8px;width:26px;height:26px;border-radius:50%;
+  background:#fff;display:flex;align-items:center;justify-content:center;
+  font-size:.8rem;box-shadow:0 3px 8px rgba(0,0,0,.18);
+}
 
 /* ---------- Cats list page ---------- */
 .cats-hero{text-align:center;padding:36px 0 10px;}

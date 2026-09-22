@@ -9,12 +9,17 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Kiwi+Maru:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="icon" href="favicon-32.png" sizes="32x32">
+<link rel="icon" href="favicon-192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="favicon-180.png">
+<meta property="og:image" content="logo.png">
 </head>
 <body>
 
 <header class="site">
   <div class="site-nav">
-    <a href="index.html" class="logo">🐾 Re:Neko
+    <a href="index.html" class="logo">
+      <img src="logo.png" alt="Re:Neko">
       <small>CAT RESCUE MALAYSIA</small>
     </a>
     <div class="nav-right">
@@ -37,14 +42,17 @@
 <div class="mobile-menu" id="mobile-menu" onclick="if(event.target===this) closeMenu()">
   <div class="mobile-menu-panel">
     <div class="mobile-menu-head">
-      <a href="index.html" class="logo">🐾 Re:Neko</a>
+      <a href="index.html" class="logo"><img src="logo.png" alt="Re:Neko"></a>
       <button type="button" class="mobile-menu-close" onclick="closeMenu()" aria-label="閉じる">×</button>
     </div>
-    <a href="index.html#about" onclick="closeMenu()" id="mnav-about">about</a>
-    <a href="cats.html" onclick="closeMenu()" id="mnav-cats">里親募集</a>
-    <a href="index.html#duo" onclick="closeMenu()" id="mnav-duo">メンバー</a>
-    <a href="index.html#donate" onclick="closeMenu()" id="mnav-donate">寄付</a>
-    <a href="index.html#foster" onclick="closeMenu()" id="mnav-foster">応募方法</a>
+    <div class="mobile-menu-links">
+      <a href="index.html#about" onclick="closeMenu()"><span class="m-icon">📖</span><span id="mnav-about">about</span></a>
+      <a href="cats.html" onclick="closeMenu()"><span class="m-icon">🐱</span><span id="mnav-cats">里親募集</span></a>
+      <a href="index.html#duo" onclick="closeMenu()"><span class="m-icon">👭</span><span id="mnav-duo">メンバー</span></a>
+      <a href="index.html#donate" onclick="closeMenu()"><span class="m-icon">💛</span><span id="mnav-donate">寄付</span></a>
+      <a href="index.html#foster" onclick="closeMenu()"><span class="m-icon">🏠</span><span id="mnav-foster">応募方法</span></a>
+    </div>
+    <span class="mobile-menu-paw">🐾</span>
   </div>
 </div>
 
@@ -76,7 +84,7 @@
 
 <footer>
   <div class="wrap">
-    <a href="index.html" class="logo">🐾 Re:Neko <small>CAT RESCUE MALAYSIA</small></a>
+    <a href="index.html" class="logo"><img src="logo.png" alt="Re:Neko"> <small>CAT RESCUE MALAYSIA</small></a>
     <div class="foot-links">
       <a href="https://www.instagram.com/reneko_malaysia/" target="_blank" rel="noopener">Instagram</a>
       <a href="index.html#donate" id="footer-link-donate">寄付する</a>
@@ -87,8 +95,8 @@
 </footer>
 
 <div class="fixed-bar">
-  <a href="index.html#foster" class="fb-foster" id="bar-btn-foster">🏠 里親になりたい</a>
-  <a href="index.html#donate" class="fb-donate" id="bar-btn-donate">💛 寄付する</a>
+  <a href="index.html#foster" class="fb-foster" id="bar-btn-foster"><span class="paw-badge">🐾</span>🏠 里親になりたい</a>
+  <a href="index.html#donate" class="fb-donate" id="bar-btn-donate"><span class="paw-badge">🐾</span>💛 寄付する</a>
 </div>
 
 <script>
