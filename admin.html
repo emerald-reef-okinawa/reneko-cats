@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>管理画面 | Re:Neko</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Kiwi+Maru:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body style="padding-bottom:90px;">
+
+<header class="site">
+  <div class="site-nav">
+    <a href="index.html" class="logo">🐾 Re:Neko
+      <small>ADMIN</small>
+    </a>
+    <div class="nav-right">
+      <a href="index.html" class="btn btn-outline" style="padding:8px 16px;font-size:.8rem;">サイトを見る</a>
+    </div>
+  </div>
+</header>
+
+<div class="admin-wrap">
+
+  <!-- Token gate -->
+  <div class="admin-box token-gate" id="token-gate">
+    <h2>管理画面ログイン</h2>
+    <p>里親募集中／卒業した猫の一覧（cats.html）を、このページから直接編集・公開できます。GitHubの「トークン」で認証します。</p>
+    <p><strong>初回のみ：トークンの作り方</strong></p>
+    <ol>
+      <li><a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">GitHubのトークン作成ページ</a>を開く（要ログイン）</li>
+      <li>「Repository access」→「Only select repositories」→ <code>reneko-cats</code> を選択</li>
+      <li>「Permissions」→「Repository permissions」→ <strong>Contents</strong> を「Read and write」に設定</li>
+      <li>「Generate token」でトークンを発行し、コピーする</li>
+      <li>下の欄に貼り付けて保存</li>
+    </ol>
+    <p style="color:var(--coral-dark);font-weight:700;">⚠️ このトークンはこの端末のブラウザ内にのみ保存されます。他人と共有したり、公共のPCに保存したりしないでください。</p>
+    <div class="admin-field">
+      <label for="token-input">GitHub トークン</label>
+      <input type="password" id="token-input" placeholder="github_pat_...">
+    </div>
+    <button class="btn btn-coral" onclick="saveToken()">保存してログイン</button>
+    <p id="token-error" class="admin-msg err"></p>
+  </div>
+
+  <!-- Main admin UI -->
+  <div id="admin-main" style="display:none;">
+    <div class="admin-box" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
+      <div>ログイン中です。編集後は下の「GitHubに保存する」ボタンを押してください。</div>
+      <button class="btn btn-outline" style="padding:8px 16px;font-size:.8rem;" onclick="logout()">ログアウト</button>
+    </div>
+
+    <div class="admin-box">
+      <h2>＋ 新しい子を追加</h2>
+      <div class="admin-row">
+        <div class="admin-field">
+          <label>名前（日本語）</label>
+          <input type="text" id="new-name-ja" placeholder="例）モモちゃん">
+        </div>
+        <div class="admin-field">
+          <label>Name (English)</label>
+          <input type="text" id="new-name-en" placeholder="e.g. Momo">
+        </div>
+      </div>
+      <div class="admin-row">
+        <div class="admin-field">
+          <label>一言コメント（日本語）</label>
+          <textarea id="new-note-ja" placeholder="例）人懐っこい甘えん坊の女の子です。"></textarea>
+        </div>
+        <div class="admin-field">
+          <label>Note (English)</label>
+          <textarea id="new-note-en" placeholder="e.g. A very affectionate girl."></textarea>
+        </div>
+      </div>
+      <div class="admin-row">
+        <div class="admin-field">
+          <label>写真</label>
+          <input type="file" id="new-photo" accept="image/*">
+        </div>
+        <div class="admin-field">
+          <label>ステータス</label>
+          <select id="new-status" style="width:100%;padding:10px 12px;border-radius:10px;border:2px solid var(--cream-deep);font-family:inherit;font-size:.9rem;background:var(--cream);">
+            <option value="adopt">ADOPT ME!（里親募集中）</option>
+            <option value="adopted">ADOPTED（卒業済み）</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn btn-yellow" onclick="addNewCat()">この子をリストに追加</button>
+    </div>
+
+    <div class="admin-box">
+      <h2>登録済みの子たち</h2>
+      <div id="cats-list"></div>
+    </div>
+  </div>
+</div>
+
+<div class="admin-save-bar" id="save-bar" style="display:none;">
+  <span class="admin-msg" id="save-msg"></span>
+  <button class="btn btn-coral" id="save-btn" onclick="saveToGithub()">GitHubに保存する</button>
+</div>
+
+<script>
+const OWNER = 'emerald-reef-okinawa';
+const REPO = 'reneko-cats';
+const BRANCH = 'master';
+const API = `https://api.github.com/repos/${OWNER}/${REPO}`;
+
+let token = null;
+let cats = [];       // working copy
+let catsSha = null;  // sha of cats.json on GitHub
+
+function getStoredToken(){
+  try{ return localStorage.getItem('reneko_admin_token'); }catch(e){ return null; }
+}
+function setStoredToken(t){
+  try{ localStorage.setItem('reneko_admin_token', t); }catch(e){}
+}
+function clearStoredToken(){
+  try{ localStorage.removeItem('reneko_admin_token'); }catch(e){}
+}
+
+function ghHeaders(){
+  return {
+    'Authorization': `Bearer ${token}`,
+    'Accept': 'application/vnd.github+json',
+  };
+}
+
+function b64EncodeUnicode(str){
+  const bytes = new TextEncoder().encode(str);
+  let binary = '';
+  bytes.forEach(b => binary += String.fromCharCode(b));
+  return btoa(binary);
+}
+function b64DecodeUnicode(b64){
+  const binary = atob(b64.replace(/\n/g, ''));
+  const bytes = new Uint8Array(binary.length);
+  for(let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+  return new TextDecoder().decode(bytes);
+}
+
+function fileToBase64(file){
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result.split(',')[1]);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+function slugify(str){
+  return String(str).toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '') || 'cat';
+}
+
+async function saveToken(){
+  const val = document.getElementById('token-input').value.trim();
+  const errEl = document.getElementById('token-error');
+  errEl.textContent = '';
+  if(!val){ errEl.textContent = 'トークンを入力してください。'; return; }
+  token = val;
+  try{
+    await loadCatsFromGithub();
+    setStoredToken(val);
+    document.getElementById('token-gate').style.display = 'none';
+    document.getElementById('admin-main').style.display = 'block';
+    document.getElementById('save-bar').style.display = 'flex';
+  }catch(e){
+    errEl.textContent = 'トークンが正しくないか、権限が不足しています。手順を確認してください。（' + e.message + '）';
+    token = null;
+  }
+}
+
+function logout(){
+  clearStoredToken();
+  location.reload();
+}
+
+async function loadCatsFromGithub(){
+  const res = await fetch(`${API}/contents/cats.json?ref=${BRANCH}`, { headers: ghHeaders() });
+  if(!res.ok) throw new Error('cats.json の取得に失敗しました (HTTP ' + res.status + ')');
+  const data = await res.json();
+  catsSha = data.sha;
+  cats = JSON.parse(b64DecodeUnicode(data.content));
+  cats.forEach(c => { c._newPhotoFile = null; });
+  renderCatsList();
+}
+
+function renderCatsList(){
+  const el = document.getElementById('cats-list');
+  if(!cats.length){
+    el.innerHTML = '<p style="color:var(--text-soft);">まだ猫が登録されていません。上のフォームから追加してください。</p>';
+    return;
+  }
+  el.innerHTML = cats.map((c, i) => {
+    const pillClass = c.status === 'adopted' ? 'adopted' : 'adopt';
+    const pillText = c.status === 'adopted' ? 'ADOPTED' : 'ADOPT ME!';
+    const toggleText = c.status === 'adopted' ? '← 募集中に戻す' : '卒業済みにする →';
+    return `
+    <div class="admin-cat" data-idx="${i}">
+      <div class="thumb"><img src="${escapeAttr(c.photo || '')}" alt=""></div>
+      <div class="fields">
+        <span class="status-pill ${pillClass}">${pillText}</span>
+        <div class="admin-row">
+          <div class="admin-field">
+            <label>名前（日本語）</label>
+            <input type="text" value="${escapeAttr(c.name_ja || '')}" oninput="updateCat(${i},'name_ja',this.value)">
+          </div>
+          <div class="admin-field">
+            <label>Name (English)</label>
+            <input type="text" value="${escapeAttr(c.name_en || '')}" oninput="updateCat(${i},'name_en',this.value)">
+          </div>
+        </div>
+        <div class="admin-row">
+          <div class="admin-field">
+            <label>一言コメント（日本語）</label>
+            <textarea oninput="updateCat(${i},'note_ja',this.value)">${escapeHtml(c.note_ja || '')}</textarea>
+          </div>
+          <div class="admin-field">
+            <label>Note (English)</label>
+            <textarea oninput="updateCat(${i},'note_en',this.value)">${escapeHtml(c.note_en || '')}</textarea>
+          </div>
+        </div>
+        <div class="admin-field">
+          <label>写真を差し替える（任意）</label>
+          <input type="file" accept="image/*" onchange="setCatPhotoFile(${i}, this.files[0])">
+        </div>
+        <div class="admin-actions">
+          <button class="btn-mini-status" onclick="toggleStatus(${i})">${toggleText}</button>
+          <button class="btn-mini-danger" onclick="removeCat(${i})">削除</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function escapeHtml(str){
+  return String(str).replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));
+}
+function escapeAttr(str){
+  return String(str).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+
+function updateCat(i, field, value){
+  cats[i][field] = value;
+}
+function toggleStatus(i){
+  cats[i].status = cats[i].status === 'adopted' ? 'adopt' : 'adopted';
+  renderCatsList();
+}
+function removeCat(i){
+  if(!confirm('この子をリストから削除しますか？（写真ファイル自体は残りますが、一覧には表示されなくなります）')) return;
+  cats.splice(i, 1);
+  renderCatsList();
+}
+function setCatPhotoFile(i, file){
+  if(!file) return;
+  cats[i]._newPhotoFile = file;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const thumb = document.querySelectorAll('.admin-cat')[i].querySelector('.thumb img');
+    thumb.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+function addNewCat(){
+  const nameJa = document.getElementById('new-name-ja').value.trim();
+  const nameEn = document.getElementById('new-name-en').value.trim();
+  const noteJa = document.getElementById('new-note-ja').value.trim();
+  const noteEn = document.getElementById('new-note-en').value.trim();
+  const status = document.getElementById('new-status').value;
+  const fileInput = document.getElementById('new-photo');
+  const file = fileInput.files[0];
+
+  if(!nameJa && !nameEn){ alert('名前を入力してください。'); return; }
+  if(!file){ alert('写真を選択してください。'); return; }
+
+  const newCat = {
+    id: slugify(nameEn || nameJa) + '-' + Date.now(),
+    name_ja: nameJa,
+    name_en: nameEn,
+    note_ja: noteJa,
+    note_en: noteEn,
+    photo: '',
+    status: status,
+    _newPhotoFile: file,
+  };
+  cats.push(newCat);
+  renderCatsList();
+
+  document.getElementById('new-name-ja').value = '';
+  document.getElementById('new-name-en').value = '';
+  document.getElementById('new-note-ja').value = '';
+  document.getElementById('new-note-en').value = '';
+  document.getElementById('new-status').value = 'adopt';
+  fileInput.value = '';
+}
+
+async function uploadPhoto(file, hintName){
+  const ext = (file.name.split('.').pop() || 'jpg').toLowerCase().replace(/[^a-z0-9]/g, '') || 'jpg';
+  const path = `photos/cats/${Date.now()}-${slugify(hintName)}.${ext}`;
+  const content = await fileToBase64(file);
+  const res = await fetch(`${API}/contents/${path}`, {
+    method: 'PUT',
+    headers: ghHeaders(),
+    body: JSON.stringify({
+      message: `Add cat photo: ${hintName}`,
+      content: content,
+      branch: BRANCH,
+    }),
+  });
+  if(!res.ok){
+    const err = await res.json().catch(() => ({}));
+    throw new Error('写真のアップロードに失敗しました: ' + (err.message || res.status));
+  }
+  return path;
+}
+
+async function saveToGithub(){
+  const msgEl = document.getElementById('save-msg');
+  const btn = document.getElementById('save-btn');
+  btn.disabled = true;
+  msgEl.className = 'admin-msg';
+  msgEl.textContent = '保存中…';
+
+  try{
+    for(const c of cats){
+      if(c._newPhotoFile){
+        const path = await uploadPhoto(c._newPhotoFile, c.name_en || c.name_ja || c.id);
+        c.photo = path;
+        c._newPhotoFile = null;
+      }
+    }
+
+    const shaRes = await fetch(`${API}/contents/cats.json?ref=${BRANCH}`, { headers: ghHeaders() });
+    const shaData = await shaRes.json();
+    const latestSha = shaData.sha || catsSha;
+
+    const cleanCats = cats.map(({ _newPhotoFile, ...rest }) => rest);
+    const content = b64EncodeUnicode(JSON.stringify(cleanCats, null, 2));
+
+    const putRes = await fetch(`${API}/contents/cats.json`, {
+      method: 'PUT',
+      headers: ghHeaders(),
+      body: JSON.stringify({
+        message: 'Update cats list from admin page',
+        content: content,
+        sha: latestSha,
+        branch: BRANCH,
+      }),
+    });
+    if(!putRes.ok){
+      const err = await putRes.json().catch(() => ({}));
+      throw new Error(err.message || ('HTTP ' + putRes.status));
+    }
+    const putData = await putRes.json();
+    catsSha = putData.content.sha;
+
+    msgEl.className = 'admin-msg ok';
+    msgEl.textContent = '保存しました！サイトへの反映には数十秒〜1分ほどかかります。';
+  }catch(e){
+    msgEl.className = 'admin-msg err';
+    msgEl.textContent = '保存に失敗しました: ' + e.message;
+  }finally{
+    btn.disabled = false;
+  }
+}
+
+(function(){
+  const stored = getStoredToken();
+  if(stored){
+    token = stored;
+    loadCatsFromGithub().then(() => {
+      document.getElementById('token-gate').style.display = 'none';
+      document.getElementById('admin-main').style.display = 'block';
+      document.getElementById('save-bar').style.display = 'flex';
+    }).catch(() => {
+      clearStoredToken();
+      token = null;
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

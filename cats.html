@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>里親募集中の子たち | Re:Neko</title>
+<meta name="description" content="Re:Neko(リネコ)が保護している、里親募集中の猫たちと卒業していった猫たちの一覧です。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Kiwi+Maru:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="site-nav">
+    <a href="index.html" class="logo">🐾 Re:Neko
+      <small>CAT RESCUE MALAYSIA</small>
+    </a>
+    <div class="nav-right">
+      <nav class="nav-links">
+        <a href="index.html#about" id="nav-about">about</a>
+        <a href="cats.html" id="nav-cats">里親募集</a>
+        <a href="index.html#duo" id="nav-duo">メンバー</a>
+        <a href="index.html#donate" id="nav-donate">寄付</a>
+        <a href="index.html#foster" id="nav-foster">応募方法</a>
+      </nav>
+      <div class="lang-toggle">
+        <button type="button" id="lang-ja" class="active" onclick="setLang('ja')">日本語</button>
+        <button type="button" id="lang-en" onclick="setLang('en')">EN</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap cats-hero">
+  <h1 id="page-h1">里親募集中の子たち</h1>
+  <p id="page-p">現在リネコがお世話をしている猫たちと、卒業していった猫たちの一覧です。</p>
+  <a href="index.html" class="back-link" id="back-link">← トップページに戻る</a>
+</div>
+
+<section id="adopt-list">
+  <div class="wrap">
+    <div class="section-title">
+      <span class="eyebrow">ADOPT ME!</span>
+      <h2 id="adopt-h2">里親募集中の子たち</h2>
+    </div>
+    <div class="cat-grid" id="adopt-grid"></div>
+  </div>
+</section>
+
+<section id="adopted-list">
+  <div class="wrap">
+    <div class="section-title">
+      <span class="eyebrow" style="background:var(--mint);color:#0d5c48;">ADOPTED</span>
+      <h2 id="adopted-h2">卒業していった子たち</h2>
+    </div>
+    <div class="cat-grid" id="adopted-grid"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="index.html" class="logo">🐾 Re:Neko <small>CAT RESCUE MALAYSIA</small></a>
+    <div class="foot-links">
+      <a href="https://www.instagram.com/reneko_malaysia/" target="_blank" rel="noopener">Instagram</a>
+      <a href="index.html#donate" id="footer-link-donate">寄付する</a>
+      <a href="index.html#foster" id="footer-link-foster">応募方法</a>
+    </div>
+    <p class="copyright">© Re:Neko Cat Rescue Malaysia</p>
+  </div>
+</footer>
+
+<div class="fixed-bar">
+  <a href="index.html#foster" class="fb-foster" id="bar-btn-foster">🏠 里親になりたい</a>
+  <a href="index.html#donate" class="fb-donate" id="bar-btn-donate">💛 寄付する</a>
+</div>
+
+<script>
+const I18N = {
+  'nav-about':        { ja:'about',            en:'About' },
+  'nav-cats':         { ja:'里親募集',          en:'Cats' },
+  'nav-duo':          { ja:'メンバー',          en:'Team' },
+  'nav-donate':       { ja:'寄付',              en:'Donate' },
+  'nav-foster':       { ja:'応募方法',          en:'How to Adopt' },
+  'page-h1':          { ja:'里親募集中の子たち', en:'Cats Looking for Homes' },
+  'page-p':           { ja:'現在リネコがお世話をしている猫たちと、卒業していった猫たちの一覧です。', en:'Here are the cats currently in our care, and the ones who&rsquo;ve already found their forever homes.' },
+  'back-link':        { ja:'← トップページに戻る', en:'&larr; Back to Home' },
+  'adopt-h2':         { ja:'里親募集中の子たち', en:'Cats Looking for Homes' },
+  'adopted-h2':       { ja:'卒業していった子たち', en:'Happily Adopted' },
+  'footer-link-donate': { ja:'寄付する', en:'Donate' },
+  'footer-link-foster': { ja:'応募方法', en:'How to Adopt' },
+  'bar-btn-foster':   { ja:'🏠 里親になりたい', en:'🏠 Become a Foster' },
+  'bar-btn-donate':   { ja:'💛 寄付する',       en:'💛 Donate' },
+};
+
+let currentLang = 'ja';
+
+function setLang(lang){
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  for(const id in I18N){
+    const el = document.getElementById(id);
+    if(el) el.innerHTML = I18N[id][lang];
+  }
+  document.getElementById('lang-ja').classList.toggle('active', lang === 'ja');
+  document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+  try{ localStorage.setItem('reneko-lang', lang); }catch(e){}
+  renderCats();
+}
+
+let allCats = [];
+
+function catCardHtml(cat){
+  const name = currentLang === 'en' ? (cat.name_en || cat.name_ja || '') : (cat.name_ja || cat.name_en || '');
+  const note = currentLang === 'en' ? (cat.note_en || cat.note_ja || '') : (cat.note_ja || cat.note_en || '');
+  const cls = cat.status === 'adopted' ? 'cat-card adopted' : 'cat-card';
+  return `<div class="${cls}">
+    <div class="cat-photo"><img src="${escapeHtml(cat.photo || '')}" alt="${escapeHtml(name)}" loading="lazy"></div>
+    <div class="cat-body">
+      <h3>${escapeHtml(name)}</h3>
+      <p>${escapeHtml(note)}</p>
+    </div>
+  </div>`;
+}
+
+function escapeHtml(str){
+  return String(str).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+
+function renderCats(){
+  const adoptGrid = document.getElementById('adopt-grid');
+  const adoptedGrid = document.getElementById('adopted-grid');
+  const adoptCats = allCats.filter(c => c.status !== 'adopted');
+  const adoptedCats = allCats.filter(c => c.status === 'adopted');
+
+  const emptyAdopt = currentLang === 'en' ? 'No cats are listed yet. Please check back soon!' : '現在募集中の猫はいません。またチェックしてみてください。';
+  const emptyAdopted = currentLang === 'en' ? 'No adopted cats listed yet.' : '卒業していった子はまだ登録されていません。';
+
+  adoptGrid.innerHTML = adoptCats.length
+    ? adoptCats.map(catCardHtml).join('')
+    : `<div class="empty-note" style="grid-column:1/-1;">${emptyAdopt}</div>`;
+
+  adoptedGrid.innerHTML = adoptedCats.length
+    ? adoptedCats.map(catCardHtml).join('')
+    : `<div class="empty-note" style="grid-column:1/-1;">${emptyAdopted}</div>`;
+}
+
+async function loadCats(){
+  try{
+    const res = await fetch('cats.json?_=' + Date.now());
+    allCats = await res.json();
+  }catch(e){
+    allCats = [];
+  }
+  renderCats();
+}
+
+(function(){
+  let lang = 'ja';
+  try{ lang = localStorage.getItem('reneko-lang') || 'ja'; }catch(e){}
+  currentLang = lang;
+  setLang(lang);
+  loadCats();
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+[
+  {
+    "id": "sample-adopt-1",
+    "name_ja": "サンプルちゃん",
+    "name_en": "Sample",
+    "note_ja": "ここはサンプルです。管理画面から名前・写真・一言コメントを編集してください。",
+    "note_en": "This is a sample entry. Edit the name, photo, and note from the admin page.",
+    "photo": "photos/cat-rescue.jpg",
+    "status": "adopt"
+  },
+  {
+    "id": "sample-adopted-1",
+    "name_ja": "サンプルくん",
+    "name_en": "Sample 2",
+    "note_ja": "卒業していった子のサンプルです。管理画面から編集・削除できます。",
+    "note_en": "This is a sample of an adopted cat. Edit or remove it from the admin page.",
+    "photo": "photos/cat-rehome.jpg",
+    "status": "adopted"
+  }
+]
