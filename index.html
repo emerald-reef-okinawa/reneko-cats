@@ -52,6 +52,8 @@
   </div>
 </section>
 
+<svg class="wave-divider" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0,30 C240,60 480,0 720,20 C960,40 1200,0 1440,25 L1440,60 L0,60 Z"></path></svg>
+
 <section id="about">
   <div class="wrap">
     <div class="section-title">
@@ -89,7 +91,7 @@
       <h2>Riko &amp; Rina</h2>
     </div>
     <div class="duo-card">
-      <div class="duo-photo"><img src="photos/duo-founders.jpg" alt="Riko と Rina、そして保護猫"></div>
+      <div class="duo-photo"><img src="photos/duo-founders.jpg" alt="Riko と Rina、そして保護猫"><span class="sticker">💗</span></div>
       <div class="duo-text">
         <p id="duo-p1">マレーシア・クアラルンプールで、猫たちの Rescue・Rehome・Return に取り組む、2人の想いから始まった団体です。</p>
         <p id="duo-p2">里親探しも、TNRによる地域猫のお世話も、すべては猫への純粋な愛情が原動力になっています。</p>
@@ -114,6 +116,8 @@
     </div>
   </div>
 </section>
+
+<svg class="wave-divider wave-yellow" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0,25 C240,0 480,50 720,30 C960,10 1200,45 1440,20 L1440,60 L0,60 Z"></path></svg>
 
 <section id="activities">
   <div class="wrap">
@@ -141,12 +145,22 @@
 </section>
 
 <section id="donate">
-  <div class="donate-section">
+  <div class="donate-section paw-texture">
     <div class="donate-inner">
       <div class="section-title">
         <span class="eyebrow" style="background:var(--pink);color:#7a1435;">DONATION</span>
         <h2 id="donate-h2">寄付のお願い</h2>
         <p id="donate-p">保護した猫たちの医療費・ミルク・ごはん・不妊去勢手術などの活動費は、皆さまからのご寄付によって支えられています。</p>
+      </div>
+      <div class="accent-photo-row">
+        <div class="accent-photo">
+          <img src="https://images.unsplash.com/photo-1567270671170-fdc10a5bf831?auto=format&fit=crop&w=400&q=80" alt="あたたかいベッドで眠る子猫">
+          <span class="sticker">🐾</span>
+        </div>
+        <div class="accent-text">
+          <h3 id="donate-accent-h3">あなたの1回のご寄付が</h3>
+          <p id="donate-accent-p">ワクチン1本、ごはん数日分、あたたかい寝床になります。どんな金額でも、確かに猫たちの力になっています。</p>
+        </div>
       </div>
       <div class="donate-card">
         <h3 id="donate-card-h3">🏦 銀行振込でのご寄付</h3>
@@ -173,6 +187,16 @@
       <span class="eyebrow" style="background:var(--yellow);color:#6b4a00;">FOSTER</span>
       <h2 id="foster-h2">里親になりたい方へ</h2>
       <p id="foster-p">下記の流れでお申し込みいただけます。まずはお気軽にご応募ください。</p>
+    </div>
+    <div class="accent-photo-row">
+      <div class="accent-photo">
+        <img src="https://images.unsplash.com/photo-1594513576829-0f8da66a9507?auto=format&fit=crop&w=400&q=80" alt="新しいおうちを待つ子猫">
+        <span class="sticker" style="background:var(--mint);">🏠</span>
+      </div>
+      <div class="accent-text">
+        <h3 id="foster-accent-h3">誰かの家族の、大切な一匹に</h3>
+        <p id="foster-accent-p">あなたのおうちに迎えられることを、この子たちは待っています。</p>
+      </div>
     </div>
     <div class="foster-steps">
       <div class="step">
@@ -274,6 +298,9 @@ const I18N = {
   'donate-h2':        { ja:'寄付のお願い', en:'Support Our Work' },
   'donate-p':         { ja:'保護した猫たちの医療費・ミルク・ごはん・不妊去勢手術などの活動費は、皆さまからのご寄付によって支えられています。',
                           en:'Every rescued cat&rsquo;s medical care, milk, food, and spay/neuter surgery is made possible by your donations.' },
+  'donate-accent-h3': { ja:'あなたの1回のご寄付が', en:'One gift from you' },
+  'donate-accent-p':  { ja:'ワクチン1本、ごはん数日分、あたたかい寝床になります。どんな金額でも、確かに猫たちの力になっています。',
+                          en:'can mean a vaccine, a few days of food, or a warm place to sleep. Any amount truly makes a difference for these cats.' },
   'donate-card-h3':   { ja:'🏦 銀行振込でのご寄付', en:'🏦 Donate by Bank Transfer' },
   'donate-card-p':    { ja:'下記口座宛にお振込みいただけますと幸いです。金額は問いません、温かいご支援をお待ちしております。', en:'We&rsquo;d be grateful for a transfer to the account below. Any amount is warmly welcomed.' },
   'bank-prep':        { ja:'※ 振込先情報は準備中です', en:'※ Account details coming soon' },
@@ -292,6 +319,8 @@ const I18N = {
 
   'foster-h2':        { ja:'里親になりたい方へ', en:'Become a Foster / Adopter' },
   'foster-p':         { ja:'下記の流れでお申し込みいただけます。まずはお気軽にご応募ください。', en:'Here&rsquo;s how the process works &mdash; we&rsquo;d love to hear from you.' },
+  'foster-accent-h3': { ja:'誰かの家族の、大切な一匹に', en:'Someone&rsquo;s next best friend' },
+  'foster-accent-p':  { ja:'あなたのおうちに迎えられることを、この子たちは待っています。', en:'These cats are waiting for a home just like yours.' },
   'step1-strong':     { ja:'Instagramで猫をチェック', en:'Check out our cats on Instagram' },
   'step1-text':       { ja:'ハイライト「ADOPT ME!」で、里親募集中の猫たちをご覧ください。', en:'See who&rsquo;s currently looking for a home in our &ldquo;ADOPT ME!&rdquo; highlight.' },
   'step2-strong':     { ja:'下記フォームからお申し込み', en:'Fill out the form below' },

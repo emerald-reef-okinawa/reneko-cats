@@ -177,7 +177,9 @@ section{padding:56px 0;}
 .duo-photo{
   flex:0 0 auto;width:200px;height:200px;border-radius:28px;
   overflow:hidden;border:5px solid var(--cream-deep);
+  position:relative;
 }
+.duo-photo .sticker{width:48px;height:48px;bottom:-12px;right:-12px;background:var(--pink);}
 .duo-photo img{width:100%;height:100%;object-fit:cover;}
 .duo-text p{font-size:.92rem;color:var(--text-soft);margin-bottom:10px;}
 .duo-text p:last-child{margin-bottom:0;}
@@ -393,3 +395,45 @@ footer .copyright{font-size:.75rem;opacity:.7;margin-top:14px;}
 .token-gate p{color:var(--text-soft);font-size:.88rem;margin-bottom:14px;text-align:left;}
 .token-gate ol{color:var(--text-soft);font-size:.85rem;margin:0 0 16px 20px;text-align:left;}
 .token-gate ol li{margin-bottom:4px;}
+
+/* ---------- Decorative flourishes ---------- */
+.wave-divider{display:block;width:100%;height:44px;}
+.wave-divider path{fill:var(--mint);opacity:.55;}
+.wave-divider.wave-yellow path{fill:var(--yellow);opacity:.55;}
+.wave-divider.wave-pink path{fill:var(--pink);opacity:.4;}
+
+.paw-texture{
+  position:relative;
+}
+.paw-texture::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  opacity:.5;
+  background-image:
+    radial-gradient(circle at 8px 8px, rgba(240,100,90,.10) 2.6px, transparent 2.8px),
+    radial-gradient(circle at 2px 14px, rgba(240,100,90,.10) 1.6px, transparent 1.8px),
+    radial-gradient(circle at 14px 14px, rgba(240,100,90,.10) 1.6px, transparent 1.8px);
+  background-size:36px 36px;
+}
+.paw-texture > *{position:relative;z-index:1;}
+
+.sticker{
+  position:absolute;display:flex;align-items:center;justify-content:center;
+  background:var(--yellow);border-radius:50%;box-shadow:0 6px 14px rgba(0,0,0,.12);
+  font-size:1.1rem;
+}
+
+/* ---------- Section photo accents (Donate / Foster) ---------- */
+.accent-photo-row{
+  display:flex;align-items:center;gap:26px;max-width:640px;margin:0 auto 24px;
+}
+@media(max-width:640px){ .accent-photo-row{flex-direction:column;text-align:center;} }
+.accent-photo{
+  flex:0 0 auto;width:150px;height:150px;border-radius:26px;overflow:hidden;
+  border:5px solid #fff;box-shadow:0 12px 24px rgba(74,54,48,.14);
+  position:relative;
+}
+.accent-photo img{width:100%;height:100%;object-fit:cover;}
+.accent-photo .sticker{width:44px;height:44px;bottom:-10px;right:-10px;}
+.accent-text{flex:1;}
+.accent-text h3{font-size:1.05rem;font-weight:800;color:var(--coral-dark);margin-bottom:6px;}
+.accent-text p{font-size:.88rem;color:var(--text-soft);}
