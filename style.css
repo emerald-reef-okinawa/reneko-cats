@@ -425,10 +425,18 @@ footer .copyright{font-size:.75rem;opacity:.7;margin-top:14px;}
   pointer-events:auto;position:relative;
   display:block;width:88px;
   text-decoration:none;
-  transition:transform .12s ease;
   margin-bottom:14px;
+  animation:badge-bob 2.4s ease-in-out infinite;
 }
-.fixed-bar a:active{transform:scale(.94);}
+.fixed-bar a:active{animation-play-state:paused;transform:scale(.94);}
+.fixed-bar .fb-donate{animation-delay:1.2s;}
+@keyframes badge-bob{
+  0%,100%{transform:translateY(0) rotate(-3deg);}
+  50%{transform:translateY(-9px) rotate(3deg);}
+}
+@media(prefers-reduced-motion:reduce){
+  .fixed-bar a{animation:none;}
+}
 .fixed-bar .peek-circle{
   position:relative;
   width:88px;height:88px;border-radius:50%;
@@ -449,7 +457,6 @@ footer .copyright{font-size:.75rem;opacity:.7;margin-top:14px;}
 .fixed-bar .fb-foster .peek-circle{background:var(--yellow);}
 .fixed-bar .fb-donate .peek-circle{background:var(--coral);}
 .fixed-bar .fb-donate .peek-icon{width:66px;height:66px;bottom:-20px;}
-.fixed-bar .fb-donate .label{background:var(--coral);color:#fff;}
 
 /* ---------- Cats list page ---------- */
 .cats-hero{text-align:center;padding:36px 0 10px;}
