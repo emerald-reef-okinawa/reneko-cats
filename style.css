@@ -397,29 +397,34 @@ footer .copyright{font-size:.75rem;opacity:.7;margin-top:14px;}
 /* ---------- Fixed bottom action bar ---------- */
 .fixed-bar{
   position:fixed;left:0;right:0;bottom:0;z-index:100;
-  display:flex;justify-content:space-between;
-  padding:0 14px calc(14px + env(safe-area-inset-bottom));
+  display:flex;justify-content:space-between;align-items:flex-end;
+  padding:0 18px calc(10px + env(safe-area-inset-bottom));
   pointer-events:none;
 }
 .fixed-bar a{
-  pointer-events:auto;position:relative;
-  display:inline-flex;align-items:center;justify-content:center;gap:6px;
-  font-weight:800;font-size:.85rem;
-  filter:drop-shadow(0 6px 10px rgba(74,54,48,.3));
+  pointer-events:auto;
+  display:flex;flex-direction:column;align-items:center;
+  text-decoration:none;
   transition:transform .12s ease;
 }
-.fixed-bar a:active{transform:scale(.95);}
-.fixed-bar .fb-foster{
-  background:var(--yellow);color:var(--text);
-  padding:30px 22px 14px;
-  clip-path:polygon(50% 0%,100% 32%,100% 100%,0% 100%,0% 32%);
+.fixed-bar a:active{transform:scale(.94);}
+.fixed-bar .icon-badge{
+  width:60px;height:60px;border-radius:50%;background:#fff;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 16px rgba(74,54,48,.25);
+  border:3px solid #fff;
 }
-.fixed-bar .fb-donate{
-  background:var(--coral);color:#fff;
-  padding:30px 22px 14px;
-  clip-path:polygon(18% 0%,32% 22%,68% 22%,82% 0%,100% 28%,100% 100%,0% 100%,0% 28%);
+.fixed-bar .icon-badge img{width:72%;height:72%;object-fit:contain;}
+.fixed-bar .label{
+  margin-top:-10px;font-weight:800;font-size:.74rem;white-space:nowrap;
+  padding:5px 12px;border-radius:999px;
+  box-shadow:0 4px 8px rgba(74,54,48,.2);
+  border:2px solid #fff;
 }
-.fixed-bar .icon{width:1.05em;height:1.05em;}
+.fixed-bar .fb-foster .icon-badge{border-color:var(--yellow);}
+.fixed-bar .fb-foster .label{background:var(--yellow);color:var(--text);}
+.fixed-bar .fb-donate .icon-badge{border-color:var(--coral);}
+.fixed-bar .fb-donate .label{background:var(--coral);color:#fff;}
 
 /* ---------- Cats list page ---------- */
 .cats-hero{text-align:center;padding:36px 0 10px;}

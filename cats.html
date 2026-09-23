@@ -99,13 +99,19 @@
       <a href="index.html#donate" id="footer-link-donate">寄付する</a>
       <a href="index.html#foster" id="footer-link-foster">応募方法</a>
     </div>
-    <p class="copyright">© Re:Neko Cat Rescue Malaysia</p>
+    <p class="copyright">© Re:Neko Cat Rescue Malaysia ・ Icons by <a href="https://twemoji.twitter.com/" target="_blank" rel="noopener" style="text-decoration:underline;">Twemoji</a> (CC-BY 4.0)</p>
   </div>
 </footer>
 
 <div class="fixed-bar">
-  <a href="index.html#foster" class="fb-foster" id="bar-btn-foster"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-house"></use></svg> 里親になりたい</a>
-  <a href="index.html#donate" class="fb-donate" id="bar-btn-donate"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-heart"></use></svg> 寄付する</a>
+  <a href="index.html#foster" class="fb-foster">
+    <span class="icon-badge"><img src="icons/house-twemoji.svg" alt=""></span>
+    <span class="label" id="bar-btn-foster">里親になりたい</span>
+  </a>
+  <a href="index.html#donate" class="fb-donate">
+    <span class="icon-badge"><img src="icons/cat-twemoji.svg" alt=""></span>
+    <span class="label" id="bar-btn-donate">寄付する</span>
+  </a>
 </div>
 
 <script>
@@ -127,8 +133,8 @@ const I18N = {
   'adopted-h2':       { ja:'卒業していった子たち', en:'Happily Adopted' },
   'footer-link-donate': { ja:'寄付する', en:'Donate' },
   'footer-link-foster': { ja:'応募方法', en:'How to Adopt' },
-  'bar-btn-foster':   { ja:'<svg class="icon" viewBox="0 0 24 24"><use href="#icon-house"></use></svg> 里親になりたい', en:'<svg class="icon" viewBox="0 0 24 24"><use href="#icon-house"></use></svg> Become a Foster' },
-  'bar-btn-donate':   { ja:'<svg class="icon" viewBox="0 0 24 24"><use href="#icon-heart"></use></svg> 寄付する', en:'<svg class="icon" viewBox="0 0 24 24"><use href="#icon-heart"></use></svg> Donate' },
+  'bar-btn-foster':   { ja:'里親になりたい', en:'Become a Foster' },
+  'bar-btn-donate':   { ja:'寄付する',       en:'Donate' },
 };
 
 let currentLang = 'ja';
