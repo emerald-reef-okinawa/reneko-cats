@@ -423,7 +423,15 @@ footer .copyright{font-size:.75rem;opacity:.7;margin-top:14px;}
 }
 .fixed-bar .fb-foster .icon-badge{border-color:var(--yellow);}
 .fixed-bar .fb-foster .label{background:var(--yellow);color:var(--text);}
-.fixed-bar .fb-donate .icon-badge{border-color:var(--coral);}
+.fixed-bar .fb-donate .icon-badge{
+  background:transparent;border:none;box-shadow:none;
+  width:76px;height:76px;
+}
+.fixed-bar .fb-donate .icon-badge img{
+  width:100%;height:100%;
+  filter:drop-shadow(0 6px 10px rgba(74,54,48,.35));
+}
+.fixed-bar .fb-donate .label{margin-top:-6px;}
 .fixed-bar .fb-donate .label{background:var(--coral);color:#fff;}
 
 /* ---------- Cats list page ---------- */
