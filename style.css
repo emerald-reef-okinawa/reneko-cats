@@ -457,6 +457,10 @@ footer .copyright{font-size:.75rem;opacity:.7;margin-top:14px;}
 .fixed-bar .fb-foster .peek-circle{background:var(--yellow);}
 .fixed-bar .fb-donate .peek-circle{background:var(--coral);}
 .fixed-bar .fb-donate .peek-icon{width:66px;height:66px;bottom:-20px;}
+.fixed-bar .peek-icon-photo{
+  object-fit:contain;
+  width:84px !important;height:84px !important;bottom:-26px !important;
+}
 
 /* ---------- Cats list page ---------- */
 .cats-hero{text-align:center;padding:36px 0 10px;}
