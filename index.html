@@ -73,6 +73,11 @@
       <img src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&w=1400&q=80" alt="保護されたかわいい猫">
     </div>
     <div class="hero-text">
+      <div class="cat-bubble-row">
+        <span class="hero-slash left"></span>
+        <span class="cat-bubble" id="hero-bubble">おうち、まってます</span>
+        <span class="hero-slash right"></span>
+      </div>
       <h1 id="hero-h1">小さな命に、<br>もう一度おうちを。</h1>
       <p id="hero-p">Re:Neko(リネコ)は、マレーシア・クアラルンプールを拠点に活動する保護猫ボランティア団体です。行き場のない猫たちをレスキューし、大切に育て、あたたかい里親さんへとつなぐ「Rescue, Rehome &amp; Return」を合言葉に活動しています。</p>
       <div class="hero-badges">
@@ -285,12 +290,12 @@
 
 <div class="fixed-bar">
   <a href="#foster" class="fb-foster">
-    <span class="icon-badge"><img src="icons/house-twemoji.svg" alt=""></span>
-    <span class="label" id="bar-btn-foster">里親になりたい</span>
+    <span class="peek-circle"><span class="peek-text" id="bar-btn-foster">里親に<br>なりたい</span></span>
+    <img class="peek-icon" src="icons/house-twemoji.svg" alt="里親になりたい">
   </a>
   <a href="#donate" class="fb-donate">
-    <span class="icon-badge"><img src="icons/cat-twemoji.svg" alt=""></span>
-    <span class="label" id="bar-btn-donate">寄付する</span>
+    <span class="peek-circle"><span class="peek-text" id="bar-btn-donate">寄付する</span></span>
+    <img class="peek-icon" src="icons/cat-twemoji.svg" alt="寄付する">
   </a>
 </div>
 
@@ -306,6 +311,7 @@ const I18N = {
   'mnav-duo':         { ja:'メンバー',          en:'Team' },
   'mnav-donate':      { ja:'寄付',              en:'Donate' },
   'mnav-foster':      { ja:'応募方法',          en:'How to Adopt' },
+  'hero-bubble':      { ja:'おうち、まってます', en:'Waiting for a home' },
 
   'hero-h1':          { ja:'小さな命に、<br>もう一度おうちを。', en:'A second chance<br>at a happy life.' },
   'hero-p':           { ja:'Re:Neko(リネコ)は、マレーシア・クアラルンプールを拠点に活動する保護猫ボランティア団体です。行き場のない猫たちをレスキューし、大切に育て、あたたかい里親さんへとつなぐ「Rescue, Rehome &amp; Return」を合言葉に活動しています。',
@@ -388,7 +394,7 @@ const I18N = {
 
   'footer-link-donate': { ja:'寄付する', en:'Donate' },
   'footer-link-foster': { ja:'里親募集', en:'Adopt' },
-  'bar-btn-foster':   { ja:'里親になりたい', en:'Become a Foster' },
+  'bar-btn-foster':   { ja:'里親に<br>なりたい', en:'Become a<br>Foster' },
   'bar-btn-donate':   { ja:'寄付する',       en:'Donate' },
 };
 
