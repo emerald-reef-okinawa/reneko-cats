@@ -82,6 +82,18 @@
         <span class="badge" id="badge-funding">🙏 皆さんからのご支援で運営</span>
       </div>
     </div>
+    <div class="quick-links">
+      <a class="quick-card qc-find" href="https://PetFinder.my/members/Sara877" target="_blank" rel="noopener">
+        <span class="qc-icon"><svg class="icon"><use href="#icon-house"></use></svg></span>
+        <span class="qc-title" id="qc-find-title">家族になる<br>猫を探す</span>
+        <span class="qc-sub" id="qc-find-sub">PetFinderで見る →</span>
+      </a>
+      <a class="quick-card qc-support" href="#bank">
+        <span class="qc-icon"><svg class="icon"><use href="#icon-heart"></use></svg></span>
+        <span class="qc-title" id="qc-support-title">猫を助ける<br>支援をする</span>
+        <span class="qc-sub" id="qc-support-sub">寄付の口座へ →</span>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -204,7 +216,7 @@
           <p id="donate-accent-p">ワクチン1本、ごはん数日分、あたたかい寝床になります。どんな金額でも、確かに猫たちの力になっています。</p>
         </div>
       </div>
-      <div class="donate-card">
+      <div class="donate-card" id="bank">
         <h3 id="donate-card-h3">🏦 銀行振込でのご寄付</h3>
         <p id="donate-card-p">下記口座宛にお振込みいただけますと幸いです。金額は問いません、温かいご支援をお待ちしております。</p>
         <div class="bank-box">
@@ -358,6 +370,10 @@ const I18N = {
   'donate-accent-h3': { ja:'あなたの1回のご寄付が', en:'One gift from you' },
   'donate-accent-p':  { ja:'ワクチン1本、ごはん数日分、あたたかい寝床になります。どんな金額でも、確かに猫たちの力になっています。',
                           en:'can mean a vaccine, a few days of food, or a warm place to sleep. Any amount truly makes a difference for these cats.' },
+  'qc-find-title':    { ja:'家族になる<br>猫を探す', en:'Find Your<br>Family Cat' },
+  'qc-find-sub':      { ja:'PetFinderで見る →', en:'See on PetFinder →' },
+  'qc-support-title': { ja:'猫を助ける<br>支援をする', en:'Support<br>Our Cats' },
+  'qc-support-sub':   { ja:'寄付の口座へ →', en:'Go to bank details →' },
   'donate-card-h3':   { ja:'🏦 銀行振込でのご寄付', en:'🏦 Donate by Bank Transfer' },
   'donate-card-p':    { ja:'下記口座宛にお振込みいただけますと幸いです。金額は問いません、温かいご支援をお待ちしております。', en:'We&rsquo;d be grateful for a transfer to the account below. Any amount is warmly welcomed.' },
   'bank-prep':        { ja:'※ 振込先情報は準備中です', en:'※ Account details coming soon' },

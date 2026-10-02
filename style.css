@@ -276,6 +276,29 @@ section{padding:56px 0;}
 .duo-text p{font-size:.92rem;color:var(--text-soft);margin-bottom:10px;}
 .duo-text p:last-child{margin-bottom:0;}
 
+/* ---------- Quick links (hero) ---------- */
+.quick-links{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:640px;margin:26px auto 0;}
+.quick-card{
+  display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;
+  padding:20px 10px 18px;border-radius:24px;color:#fff;text-decoration:none;
+  box-shadow:0 10px 22px rgba(74,54,48,.14);transition:transform .15s ease;
+}
+.quick-card:hover{transform:translateY(-4px);}
+.qc-find{background:linear-gradient(160deg,#FF9A8B,var(--coral));}
+.qc-support{background:linear-gradient(160deg,#FFB3C8,var(--pink));}
+.quick-card .qc-icon{
+  width:54px;height:54px;border-radius:50%;background:#fff;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 10px rgba(0,0,0,.12);
+}
+.quick-card .qc-icon .icon{width:30px;height:30px;}
+.qc-find .qc-icon{color:var(--coral);}
+.qc-support .qc-icon{color:var(--pink);}
+.quick-card .qc-title{font-weight:800;font-size:1.08rem;line-height:1.35;}
+.quick-card .qc-sub{font-size:.72rem;font-weight:800;background:rgba(255,255,255,.92);color:var(--coral-dark);padding:4px 12px;border-radius:999px;}
+@media(max-width:380px){ .quick-card .qc-title{font-size:.95rem;} .quick-card .qc-sub{font-size:.66rem;padding:4px 9px;} }
+#bank{scroll-margin-top:90px;}
+
 /* ---------- Activities ---------- */
 .activity-grid{
   display:grid;grid-template-columns:repeat(2,1fr);gap:20px;
