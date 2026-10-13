@@ -167,11 +167,11 @@ footer .logo small .icon{color:#fff;}
 }
 .hero-text{max-width:640px;margin:0 auto;text-align:center;}
 .photo-caption{
-  position:absolute;left:50%;bottom:7%;transform:translateX(-50%) rotate(-3deg);
+  position:absolute;left:5%;bottom:7%;transform:rotate(-3deg);
   font-family:"Yomogi",cursive;
-  font-size:clamp(1.8rem,6vw,2.9rem);
+  font-size:clamp(1.15rem,4.6vw,2.6rem);
   color:#fff;
-  -webkit-text-stroke:7px #FF8FAE;
+  -webkit-text-stroke:clamp(4px,1vw,7px) #FF8FAE;
   paint-order:stroke fill;
   text-shadow:0 3px 10px rgba(255,80,130,.45);
   white-space:nowrap;
@@ -191,19 +191,17 @@ footer .logo small .icon{color:#fff;}
   color:var(--text-soft);display:inline-flex;align-items:center;gap:6px;
 }
 .hero-photo-top{
-  position:relative;border-radius:32px;overflow:hidden;
-  box-shadow:0 20px 40px rgba(217,75,66,.18);
-  border:6px solid #fff;margin-bottom:28px;
+  position:relative;margin-bottom:28px;
   max-width:900px;margin-left:auto;margin-right:auto;
 }
-.hero-photo-top img{aspect-ratio:16/9;object-fit:cover;width:100%;}
-@media(max-width:640px){ .hero-photo-top img{aspect-ratio:4/3;} }
+.hero-photo-top img{width:100%;height:auto;display:block;filter:drop-shadow(0 16px 26px rgba(217,75,66,.2));}
 .hero-photo-top::after{
   content:"🐾";position:absolute;bottom:-10px;right:-10px;
   background:var(--yellow);width:64px;height:64px;border-radius:50%;
   display:flex;align-items:center;justify-content:center;font-size:1.6rem;
   box-shadow:0 8px 16px rgba(0,0,0,.12);
 }
+@media(max-width:640px){ .hero-photo-top::after{width:42px;height:42px;font-size:1.05rem;bottom:-8px;right:-6px;} }
 
 /* ---------- Photo gallery strip ---------- */
 .gallery-strip{
@@ -278,25 +276,9 @@ section{padding:56px 0;}
 
 /* ---------- Quick links (hero) ---------- */
 .quick-links{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:640px;margin:26px auto 0;}
-.quick-card{
-  display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;
-  padding:20px 10px 18px;border-radius:24px;color:#fff;text-decoration:none;
-  box-shadow:0 10px 22px rgba(74,54,48,.14);transition:transform .15s ease;
-}
+.quick-card{display:block;border-radius:22px;transition:transform .15s ease;filter:drop-shadow(0 10px 18px rgba(74,54,48,.14));}
 .quick-card:hover{transform:translateY(-4px);}
-.qc-find{background:linear-gradient(160deg,#FF9A8B,var(--coral));}
-.qc-support{background:linear-gradient(160deg,#FFB3C8,var(--pink));}
-.quick-card .qc-icon{
-  width:54px;height:54px;border-radius:50%;background:#fff;
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 4px 10px rgba(0,0,0,.12);
-}
-.quick-card .qc-icon .icon{width:30px;height:30px;}
-.qc-find .qc-icon{color:var(--coral);}
-.qc-support .qc-icon{color:var(--pink);}
-.quick-card .qc-title{font-weight:800;font-size:1.08rem;line-height:1.35;}
-.quick-card .qc-sub{font-size:.72rem;font-weight:800;background:rgba(255,255,255,.92);color:var(--coral-dark);padding:4px 12px;border-radius:999px;}
-@media(max-width:380px){ .quick-card .qc-title{font-size:.95rem;} .quick-card .qc-sub{font-size:.66rem;padding:4px 9px;} }
+.quick-card img{width:100%;height:auto;display:block;}
 #bank{scroll-margin-top:90px;}
 
 /* ---------- Activities ---------- */
@@ -430,57 +412,23 @@ footer .foot-links a{font-size:.85rem;font-weight:700;opacity:.9;}
 footer .foot-links a:hover{opacity:1;text-decoration:underline;}
 footer .copyright{font-size:.75rem;opacity:.7;margin-top:14px;}
 
-/* ---------- Fixed bottom action bar ---------- */
+/* ---------- Floating Instagram button ---------- */
 .fixed-bar{
-  position:fixed;left:0;right:0;bottom:0;z-index:100;
-  display:flex;justify-content:space-between;align-items:flex-end;
-  padding:0 18px calc(10px + env(safe-area-inset-bottom));
-  pointer-events:none;
+  position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom));z-index:100;
 }
-.fixed-bar a{
-  pointer-events:auto;position:relative;
-  display:block;width:88px;
-  text-decoration:none;
-  margin-bottom:14px;
+.fixed-bar .fb-insta{
+  display:block;width:96px;
   animation:badge-bob 2.4s ease-in-out infinite;
 }
-.fixed-bar a:active{animation-play-state:paused;transform:scale(.94);}
-.fixed-bar .fb-donate{animation-delay:1.2s;}
+.fixed-bar .fb-insta img{width:100%;height:auto;display:block;filter:drop-shadow(0 8px 12px rgba(74,54,48,.3));}
+.fixed-bar .fb-insta:active{animation-play-state:paused;transform:scale(.94);}
+@media(max-width:480px){ .fixed-bar .fb-insta{width:78px;} }
 @keyframes badge-bob{
   0%,100%{transform:translateY(0) rotate(-3deg);}
-  50%{transform:translateY(-9px) rotate(3deg);}
+  50%{transform:translateY(-8px) rotate(3deg);}
 }
 @media(prefers-reduced-motion:reduce){
-  .fixed-bar a{animation:none;}
-}
-.fixed-bar .peek-circle{
-  position:relative;
-  width:88px;height:88px;border-radius:50%;
-  display:flex;align-items:flex-end;justify-content:center;
-  border:4px solid #fff;
-  box-shadow:0 10px 20px rgba(74,54,48,.3);
-}
-.fixed-bar .peek-text{
-  position:absolute;bottom:-14px;left:50%;transform:translateX(-50%);
-  background:#fff;font-weight:800;font-size:.72rem;line-height:1.2;
-  white-space:nowrap;padding:5px 13px;border-radius:999px;
-  box-shadow:0 4px 8px rgba(74,54,48,.22);
-  border:2px solid var(--accent,var(--coral));
-  color:var(--text);
-}
-.fixed-bar .peek-icon{
-  position:absolute;top:-16px;left:50%;transform:translateX(-50%);
-  width:58px;height:58px;
-  filter:drop-shadow(0 6px 10px rgba(0,0,0,.3));
-}
-.fixed-bar .fb-foster .peek-circle{background:var(--yellow);}
-.fixed-bar .fb-foster .peek-text{--accent:var(--yellow);}
-.fixed-bar .fb-donate .peek-circle{background:var(--coral);}
-.fixed-bar .fb-donate .peek-text{--accent:var(--coral);}
-.fixed-bar .fb-donate .peek-icon{width:66px;height:66px;top:-20px;}
-.fixed-bar .peek-icon-photo{
-  object-fit:contain;
-  width:84px !important;height:84px !important;top:-30px !important;
+  .fixed-bar .fb-insta{animation:none;}
 }
 
 /* ---------- Cats list page ---------- */
