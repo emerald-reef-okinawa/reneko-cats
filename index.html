@@ -83,11 +83,13 @@
       </div>
     </div>
     <div class="quick-links">
-      <a class="quick-card" href="https://PetFinder.my/members/Sara877" target="_blank" rel="noopener">
-        <img src="images/card-find.webp" alt="家族になる猫を探す - PetFinderで見る" width="812" height="792">
+      <a class="quick-card qc-find" href="https://PetFinder.my/members/Sara877" target="_blank" rel="noopener">
+        <img src="images/card-find.webp" alt="家族になる猫を探す" width="812" height="792">
+        <span class="qc-btn" id="qc-find-btn">PetFinderで見る <span class="qc-arrow">→</span></span>
       </a>
-      <a class="quick-card" href="#bank">
-        <img src="images/card-support.webp" alt="猫を助ける支援をする - 寄付の口座へ" width="811" height="792">
+      <a class="quick-card qc-support" href="#bank">
+        <img src="images/card-support.webp" alt="猫を助ける支援をする" width="811" height="792">
+        <span class="qc-btn" id="qc-support-btn">寄付の口座へ <span class="qc-arrow">→</span></span>
       </a>
     </div>
   </div>
@@ -104,17 +106,17 @@
     </div>
     <div class="about-cards">
       <div class="about-card">
-        <div class="about-photo"><img src="photos/cat-rescue.jpg" alt="レスキューした子猫"></div>
+        <div class="about-photo"><img src="photos/kittens-box.jpg" alt="レスキューした子猫たち"></div>
         <h3 id="about-rescue-h3">Rescue（保護）</h3>
         <p id="about-rescue-p">できる範囲で、野良猫や行き場のない猫たちをレスキューしています。私たちは小さなチームのため、集中的な医療ケアが必要なケースは、より大きな保護団体への相談をお願いする場合もあります。</p>
       </div>
       <div class="about-card">
-        <div class="about-photo"><img src="photos/cat-rehome.jpg" alt="里親を待つ子猫たち"></div>
+        <div class="about-photo"><img src="photos/cats-cuddle.jpg" alt="里親を待つ猫たち"></div>
         <h3 id="about-rehome-h3">Rehome（里親探し）</h3>
         <p id="about-rehome-p">保護した猫たちに、あたたかいベッドと十分なごはん、そして愛情を感じられる新しい家族を見つけます。詳しい流れは「里親になりたい方へ」をご覧ください。</p>
       </div>
       <div class="about-card">
-        <div class="about-photo"><img src="photos/cat-return.jpg" alt="地域猫"></div>
+        <div class="about-photo"><img src="photos/cat-gray.jpg" alt="地域猫"></div>
         <h3 id="about-return-h3">Return（地域へ）</h3>
         <p id="about-return-p">TNR（不妊去勢・地域へのリターン）活動を行い、地域猫たちの数を人道的にコントロールしながら、暮らしの質の向上にも取り組んでいます。</p>
       </div>
@@ -150,46 +152,10 @@
       <p id="gallery-p">もっと見たい方は Instagram も覗いてみてください。</p>
     </div>
     <div class="gallery-strip">
-      <a href="https://www.instagram.com/reneko_malaysia/" target="_blank" rel="noopener"><img src="photos/cat-rescue.jpg" alt="保護した子猫"></a>
-      <a href="https://www.instagram.com/reneko_malaysia/" target="_blank" rel="noopener"><img src="photos/cat-rehome.jpg" alt="里親を待つ子猫たち"></a>
-      <a href="https://www.instagram.com/reneko_malaysia/" target="_blank" rel="noopener"><img src="photos/cat-return.jpg" alt="地域猫"></a>
-      <a href="https://www.instagram.com/reneko_malaysia/" target="_blank" rel="noopener"><img src="photos/duo-founders.jpg" alt="Riko と Rina"></a>
-    </div>
-  </div>
-</section>
-
-<svg class="wave-divider wave-yellow" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0,25 C240,0 480,50 720,30 C960,10 1200,45 1440,20 L1440,60 L0,60 Z"></path></svg>
-
-<section id="activities">
-  <div class="wrap">
-    <div class="section-title">
-      <span class="eyebrow">ACTIVITIES</span>
-      <h2 id="activities-h2">わたしたちの取り組み</h2>
-    </div>
-    <div class="activity-grid">
-      <a class="activity-card" href="cats.html#adopt-list">
-        <span class="tag" id="act-adopt-tag">家族になる猫を探す</span>
-        <h3 id="act-adopt-h3">里親募集中の子たち</h3>
-        <p id="act-adopt-p">現在リネコがお世話をしている、里親さんを募集中の猫たちを紹介しています。</p>
-        <p class="act-waiting" id="waiting-title">あなたを待っている猫たち</p>
-        <div class="act-photo-row">
-          <span class="act-cat"><img src="photos/cat-rescue.jpg" alt="里親募集中の猫"><span class="meet-me">Meet me</span></span>
-          <span class="act-cat"><img src="photos/cat-rehome.jpg" alt="里親募集中の猫"><span class="meet-me">Meet me</span></span>
-          <span class="act-cat"><img src="photos/cat-return.jpg" alt="里親募集中の猫"><span class="meet-me">Meet me</span></span>
-        </div>
-        <span class="act-more" id="act-adopt-more">一覧を見る →</span>
-      </a>
-      <a class="activity-card" href="cats.html#adopted-list">
-        <span class="tag" id="act-adopted-tag">新しい家族と、しあわせに</span>
-        <h3 id="act-adopted-h3">卒業していった子たち</h3>
-        <p id="act-adopted-p">あたたかい家族のもとへ巣立っていった、幸せな猫たちの記録です。</p>
-        <div class="act-photo-row">
-          <span class="act-cat"><img src="photos/cat-rehome.jpg" alt="卒業していった猫"></span>
-          <span class="act-cat"><img src="photos/cat-return.jpg" alt="卒業していった猫"></span>
-          <span class="act-cat"><img src="photos/cat-rescue.jpg" alt="卒業していった猫"></span>
-        </div>
-        <span class="act-more" id="act-adopted-more">一覧を見る →</span>
-      </a>
+      <a href="https://www.instagram.com/reneko_malaysia/" target="_blank" rel="noopener"><img src="photos/cat-vet.jpg" alt="保護した子猫" loading="lazy"></a>
+      <a href="https://www.instagram.com/reneko_malaysia/" target="_blank" rel="noopener"><img src="photos/cat-trio-car.jpg" alt="里親を待つ子猫たち" loading="lazy"></a>
+      <a href="https://www.instagram.com/reneko_malaysia/" target="_blank" rel="noopener"><img src="photos/cat-white-tongue.jpg" alt="保護した子猫" loading="lazy"></a>
+      <a href="https://www.instagram.com/reneko_malaysia/" target="_blank" rel="noopener"><img src="photos/kittens-vet.jpg" alt="動物病院で診察を受ける子猫たち" loading="lazy"></a>
     </div>
   </div>
 </section>
@@ -204,7 +170,7 @@
       </div>
       <div class="accent-photo-row">
         <div class="accent-photo">
-          <img src="https://images.unsplash.com/photo-1567270671170-fdc10a5bf831?auto=format&fit=crop&w=400&q=80" alt="あたたかいベッドで眠る子猫">
+          <img src="photos/cat-vet.jpg" alt="動物病院でケアを受ける子猫">
           <span class="sticker">🐾</span>
         </div>
         <div class="accent-text">
@@ -240,7 +206,7 @@
     </div>
     <div class="accent-photo-row">
       <div class="accent-photo">
-        <img src="https://images.unsplash.com/photo-1594513576829-0f8da66a9507?auto=format&fit=crop&w=400&q=80" alt="新しいおうちを待つ子猫">
+        <img src="photos/cat-trio-car.jpg" alt="新しいおうちを待つ子猫たち">
         <span class="sticker" style="background:var(--mint);">🏠</span>
       </div>
       <div class="accent-text">
@@ -341,16 +307,6 @@ const I18N = {
   'duo-p3':           { ja:'今はまだ2人だけの小さな活動ですが、たくさんの猫たちとのふれあいに支えられています。いつも見守ってくださり、ありがとうございます。',
                           en:'It&rsquo;s just the two of us for now, fueled by a lot of kitty cuddles. Thank you for being part of our journey!' },
 
-  'activities-h2':    { ja:'わたしたちの取り組み', en:'Our Activities' },
-  'act-adopt-tag':    { ja:'家族になる猫を探す', en:'Find Your Family Cat' },
-  'act-adopt-h3':     { ja:'里親募集中の子たち', en:'Cats Looking for Homes' },
-  'act-adopt-p':      { ja:'現在リネコがお世話をしている、里親さんを募集中の猫たちを紹介しています。', en:'Meet the cats currently in our care who are looking for their forever homes.' },
-  'act-adopt-more':   { ja:'一覧を見る →', en:'See the list →' },
-  'act-adopted-tag':  { ja:'新しい家族と、しあわせに', en:'Happy in Their New Homes' },
-  'waiting-title':    { ja:'あなたを待っている猫たち', en:'Cats Waiting for You' },
-  'act-adopted-h3':   { ja:'卒業していった子たち', en:'Happily Adopted' },
-  'act-adopted-p':    { ja:'あたたかい家族のもとへ巣立っていった、幸せな猫たちの記録です。', en:'A record of the happy cats who&rsquo;ve found their forever families.' },
-  'act-adopted-more': { ja:'一覧を見る →', en:'See the list →' },
 
   'gallery-h2':       { ja:'リネコの子たち', en:'Meet the Cats' },
   'gallery-p':        { ja:'もっと見たい方は Instagram も覗いてみてください。', en:'Want to see more? Check out our Instagram too.' },
@@ -361,6 +317,8 @@ const I18N = {
   'donate-accent-h3': { ja:'あなたの1回のご寄付が', en:'One gift from you' },
   'donate-accent-p':  { ja:'ワクチン1本、ごはん数日分、あたたかい寝床になります。どんな金額でも、確かに猫たちの力になっています。',
                           en:'can mean a vaccine, a few days of food, or a warm place to sleep. Any amount truly makes a difference for these cats.' },
+  'qc-find-btn':      { ja:'PetFinderで見る <span class="qc-arrow">→</span>', en:'See on PetFinder <span class="qc-arrow">→</span>' },
+  'qc-support-btn':   { ja:'寄付の口座へ <span class="qc-arrow">→</span>', en:'Donate <span class="qc-arrow">→</span>' },
   'donate-card-h3':   { ja:'🏦 銀行振込でのご寄付', en:'🏦 Donate by Bank Transfer' },
   'donate-card-p':    { ja:'下記口座宛にお振込みいただけますと幸いです。金額は問いません、温かいご支援をお待ちしております。', en:'We&rsquo;d be grateful for a transfer to the account below. Any amount is warmly welcomed.' },
   'bank-prep':        { ja:'※ 振込先情報は準備中です', en:'※ Account details coming soon' },
