@@ -304,6 +304,20 @@ section{padding:56px 0;}
 .accent-text h3{font-family:var(--heading);font-weight:800;font-size:1.1rem;color:var(--red);margin-bottom:6px;}
 .accent-text p{font-size:.88rem;color:var(--text-soft);font-weight:500;}
 
+/* wide variant: big landscape photo with centered caption below */
+.accent-photo-row.accent-wide{flex-direction:column;text-align:center;gap:22px;max-width:760px;margin-bottom:34px;}
+.accent-wide .accent-photo{
+  width:100%;max-width:600px;height:auto;aspect-ratio:5/4;border-radius:22px;position:relative;
+  box-shadow:0 12px 28px rgba(226,70,45,.16);
+}
+.accent-wide .accent-photo img{object-position:50% 2%;}
+.accent-wide .accent-text h3{font-size:clamp(1.3rem,4.4vw,1.75rem);text-shadow:2px 2px 0 var(--pink);margin-bottom:8px;}
+.accent-wide .accent-text p{font-size:.95rem;}
+.motion-lines{
+  position:absolute;top:12%;right:5%;width:15%;height:auto;pointer-events:none;
+  fill:none;stroke:var(--red);stroke-width:7;stroke-linecap:round;opacity:.85;
+}
+
 .paw-texture{position:relative;}
 .paw-texture::before{
   content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;
