@@ -323,9 +323,9 @@ footer{background:var(--red);color:#fff;padding:40px 0 30px;text-align:center;}
 footer .logo{color:#fff;justify-content:center;}
 footer .logo img{border-color:#fff;}
 footer .logo small{color:#fff;text-shadow:2px 2px 0 var(--red-dark);}
-footer .foot-links{display:flex;justify-content:center;gap:20px;margin:18px 0;flex-wrap:wrap;}
-footer .foot-links a{font-size:.85rem;font-weight:800;opacity:.92;}
-footer .foot-links a:hover{opacity:1;text-decoration:underline;}
+footer .foot-contact{margin:18px 0;font-size:.9rem;font-weight:800;}
+footer .foot-contact a{text-decoration:underline;text-underline-offset:3px;}
+footer .foot-contact a:hover{opacity:.85;}
 footer .copyright{font-size:.75rem;opacity:.8;margin-top:14px;}
 
 /* ---------- Floating Instagram button ---------- */
