@@ -167,9 +167,9 @@ section{padding:56px 0;}
 }
 .hero h1{
   font-family:var(--heading);font-weight:800;
-  font-size:clamp(1.8rem,5.4vw,2.7rem);color:var(--red);
+  font-size:clamp(2.3rem,8.4vw,3.9rem);color:var(--red);
   text-shadow:3px 3px 0 var(--pink);
-  line-height:1.45;margin-bottom:16px;
+  line-height:1.25;margin-bottom:18px;
 }
 .hero p{color:var(--text-soft);font-size:1rem;font-weight:500;margin-bottom:22px;}
 .hero-badges{display:flex;flex-wrap:nowrap;gap:8px;justify-content:center;}
@@ -296,14 +296,14 @@ section{padding:56px 0;}
 /* wide variant: big landscape photo with centered caption below */
 .accent-photo-row.accent-wide{flex-direction:column;text-align:center;gap:22px;max-width:760px;margin-bottom:34px;}
 .accent-wide .accent-photo{
-  width:100%;max-width:480px;height:auto;aspect-ratio:803/985;border-radius:22px;position:relative;
+  width:100%;max-width:100%;height:auto;aspect-ratio:3/2;border-radius:22px;position:relative;
   box-shadow:0 12px 28px rgba(226,70,45,.16);
 }
-.accent-wide .accent-photo img{object-position:50% 0%;}
+.accent-wide .accent-photo img{object-position:50% 8%;}
 .accent-wide .accent-text h3{font-size:clamp(1.3rem,4.4vw,1.75rem);text-shadow:2px 2px 0 var(--pink);margin-bottom:8px;}
 .accent-wide .accent-text p{font-size:.95rem;}
 .motion-lines{
-  position:absolute;top:20%;right:4%;width:16%;height:auto;pointer-events:none;
+  position:absolute;top:10%;right:4%;width:12%;height:auto;pointer-events:none;
   fill:none;stroke:var(--red);stroke-width:7;stroke-linecap:round;opacity:.85;
 }
 
