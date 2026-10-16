@@ -34,8 +34,8 @@
       <nav class="nav-links">
         <a href="#about" id="nav-about">about</a>
         <a href="#duo" id="nav-duo">メンバー</a>
-        <a href="#donate" id="nav-donate">寄付</a>
         <a href="#foster" id="nav-foster">応募方法</a>
+        <a href="#donate" id="nav-donate">寄付</a>
       </nav>
       <div class="lang-toggle">
         <button type="button" id="lang-ja" class="active" onclick="setLang('ja')">日本語</button>
@@ -55,8 +55,8 @@
     <div class="mobile-menu-links">
       <a href="#about" onclick="closeMenu()"><span class="m-icon"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-book"></use></svg></span><span id="mnav-about">about</span></a>
       <a href="#duo" onclick="closeMenu()"><span class="m-icon"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-duo"></use></svg></span><span id="mnav-duo">メンバー</span></a>
-      <a href="#donate" onclick="closeMenu()"><span class="m-icon"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-heart"></use></svg></span><span id="mnav-donate">寄付</span></a>
       <a href="#foster" onclick="closeMenu()"><span class="m-icon"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-house"></use></svg></span><span id="mnav-foster">応募方法</span></a>
+      <a href="#donate" onclick="closeMenu()"><span class="m-icon"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-heart"></use></svg></span><span id="mnav-donate">寄付</span></a>
     </div>
     <svg class="mobile-menu-paw" viewBox="0 0 24 24"><use href="#icon-paw"></use></svg>
   </div>
@@ -75,7 +75,7 @@
       <p id="hero-p">Re:Neko(リネコ)は、マレーシア・クアラルンプールを拠点に活動する保護猫ボランティア団体です。行き場のない猫たちをレスキューし、大切に育て、温かい里親さんへとつなぐ「Rescue, Rehome &amp; Return」を合言葉に活動しています。</p>
       <div class="hero-badges">
         <span class="badge" id="badge-location">📍 Kuala Lumpur</span>
-        <span class="badge" id="badge-volunteer">🐾 ボランティアベース(シェルターではありません)</span>
+        <span class="badge" id="badge-volunteer">🐾 ボランティアベース</span>
       </div>
     </div>
     <div class="quick-links">
@@ -137,42 +137,6 @@
 </section>
 
 
-<section id="donate">
-  <div class="donate-section paw-texture">
-    <div class="donate-inner">
-      <div class="section-title">
-        <span class="eyebrow">DONATION</span>
-        <h2 id="donate-h2">寄付のお願い</h2>
-        <p id="donate-p">保護した猫たちの医療費・ミルク・ごはん・不妊去勢手術などの活動費は、皆さまからのご寄付によって支えられています。</p>
-      </div>
-      <div class="accent-photo-row">
-        <div class="accent-photo">
-          <img src="photos/cat-vet.jpg" alt="動物病院でケアを受ける子猫">
-        </div>
-        <div class="accent-text">
-          <h3 id="donate-accent-h3">あなたの1回のご寄付が</h3>
-          <p id="donate-accent-p">ワクチン1本、ごはん数日分、あたたかい寝床になります。どんな金額でも、確かに猫たちの力になっています。</p>
-        </div>
-      </div>
-      <div class="donate-card" id="bank">
-        <h3 id="donate-card-h3">🏦 銀行振込でのご寄付</h3>
-        <p id="donate-card-p">下記口座宛にお振込みいただけますと幸いです。金額は問いません、温かいご支援をお待ちしております。</p>
-        <div class="bank-box">
-          <div class="prep" id="bank-prep">※ 振込先情報は準備中です</div>
-          <dl>
-            <div class="bank-row"><dt id="bank-label-name">銀行名</dt><dd id="bank-value-name">ご準備中</dd></div>
-            <div class="bank-row"><dt id="bank-label-branch">支店名</dt><dd id="bank-value-branch">ご準備中</dd></div>
-            <div class="bank-row"><dt id="bank-label-type">口座種別</dt><dd id="bank-value-type">ご準備中</dd></div>
-            <div class="bank-row"><dt id="bank-label-number">口座番号</dt><dd id="bank-value-number">ご準備中</dd></div>
-            <div class="bank-row"><dt id="bank-label-holder">口座名義人</dt><dd id="bank-value-holder">ご準備中</dd></div>
-          </dl>
-        </div>
-        <p class="donate-alt" id="donate-alt">振込先情報は近日公開予定です。お急ぎの方は <a href="https://www.instagram.com/reneko_malaysia/" target="_blank" rel="noopener">InstagramのDM</a> よりお問い合わせください。</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section id="foster">
   <div class="wrap">
     <div class="section-title">
@@ -223,6 +187,42 @@
   </div>
 </section>
 
+<section id="donate">
+  <div class="donate-section paw-texture">
+    <div class="donate-inner">
+      <div class="section-title">
+        <span class="eyebrow">DONATION</span>
+        <h2 id="donate-h2">寄付のお願い</h2>
+        <p id="donate-p">保護した猫たちの医療費・ミルク・ごはん・不妊去勢手術などの活動費は、皆さまからのご寄付によって支えられています。</p>
+      </div>
+      <div class="accent-photo-row">
+        <div class="accent-photo">
+          <img src="photos/cat-vet.jpg" alt="動物病院でケアを受ける子猫">
+        </div>
+        <div class="accent-text">
+          <h3 id="donate-accent-h3">あなたの1回のご寄付が</h3>
+          <p id="donate-accent-p">ワクチン1本、ごはん数日分、あたたかい寝床になります。どんな金額でも、確かに猫たちの力になっています。</p>
+        </div>
+      </div>
+      <div class="donate-card" id="bank">
+        <h3 id="donate-card-h3">🏦 銀行振込でのご寄付</h3>
+        <p id="donate-card-p">下記口座宛にお振込みいただけますと幸いです。金額は問いません、温かいご支援をお待ちしております。</p>
+        <div class="bank-box">
+          <div class="prep" id="bank-prep">※ 振込先情報は準備中です</div>
+          <dl>
+            <div class="bank-row"><dt id="bank-label-name">銀行名</dt><dd id="bank-value-name">ご準備中</dd></div>
+            <div class="bank-row"><dt id="bank-label-branch">支店名</dt><dd id="bank-value-branch">ご準備中</dd></div>
+            <div class="bank-row"><dt id="bank-label-type">口座種別</dt><dd id="bank-value-type">ご準備中</dd></div>
+            <div class="bank-row"><dt id="bank-label-number">口座番号</dt><dd id="bank-value-number">ご準備中</dd></div>
+            <div class="bank-row"><dt id="bank-label-holder">口座名義人</dt><dd id="bank-value-holder">ご準備中</dd></div>
+          </dl>
+        </div>
+        <p class="donate-alt" id="donate-alt">振込先情報は近日公開予定です。お急ぎの方は <a href="https://www.instagram.com/reneko_malaysia/" target="_blank" rel="noopener">InstagramのDM</a> よりお問い合わせください。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="wrap">
     <a href="#top" class="logo"><img src="logo.png" alt="Re:Neko"> <small><svg class="icon" viewBox="0 0 24 24"><use href="#icon-paw"></use></svg> CAT RESCUE MALAYSIA</small></a>
@@ -254,7 +254,7 @@ const I18N = {
   'hero-p':           { ja:'Re:Neko(リネコ)は、マレーシア・クアラルンプールを拠点に活動する保護猫ボランティア団体です。行き場のない猫たちをレスキューし、大切に育て、温かい里親さんへとつなぐ「Rescue, Rehome &amp; Return」を合言葉に活動しています。',
                           en:'Re:Neko is a volunteer-led cat rescue initiative based in Kuala Lumpur, Malaysia.<br>We rescue cats in need, care for them, and connect them with loving forever homes.<br>Through Rescue, Rehome &amp; Return, we strive to give every cat a safer, happier future.' },
   'badge-location':   { ja:'📍 Kuala Lumpur',   en:'📍 Kuala Lumpur' },
-  'badge-volunteer':  { ja:'🐾 ボランティアベース(シェルターではありません)', en:'🐾 Volunteer-based (not a shelter)' },
+  'badge-volunteer':  { ja:'🐾 ボランティアベース', en:'🐾 Volunteer-based' },
 
   'about-h2':         { ja:'Re:Neko の活動について', en:'What We Do' },
   'about-p':          { ja:'Rescue, Rehome &amp; Return — 3つのRを大切に、一匹一匹の命と向き合っています。', en:'Rescue, Rehome &amp; Return &mdash; three values at the heart of everything we do for every single cat.' },
