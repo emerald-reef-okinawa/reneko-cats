@@ -73,6 +73,7 @@ header.site{
   border-radius:999px;width:40px;height:40px;align-items:center;justify-content:center;
   cursor:pointer;flex:0 0 auto;font-size:1.1rem;line-height:1;
 }
+.menu-toggle svg{width:22px;height:22px;}
 @media(max-width:760px){ .menu-toggle{display:flex;} }
 
 .lang-toggle{
@@ -172,16 +173,19 @@ section{padding:56px 0;}
   line-height:1.25;margin-bottom:18px;
 }
 .hero p{color:var(--text-soft);font-size:1rem;font-weight:500;margin-bottom:22px;}
-.hero-badges{display:flex;flex-wrap:nowrap;gap:8px;justify-content:center;}
+.hero-badges{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;}
 .badge{
   background:var(--paper);border:2px solid var(--red);
-  padding:5px 14px;border-radius:999px;font-size:.8rem;font-weight:800;
-  color:var(--red);display:inline-flex;align-items:center;gap:6px;
+  padding:4px 14px 4px 5px;border-radius:999px;font-size:.82rem;font-weight:800;
+  color:var(--red);display:inline-flex;align-items:center;gap:8px;white-space:nowrap;
+  box-shadow:3px 3px 0 var(--pink);
 }
-@media(max-width:480px){
-  .hero-badges{display:grid;grid-template-columns:auto 1fr;gap:6px;}
-  .badge{font-size:.7rem;padding:5px 10px;gap:4px;border-radius:14px;line-height:1.35;justify-content:center;text-align:center;}
+.badge .b-icon{
+  width:24px;height:24px;border-radius:50%;background:var(--red);color:#fff;flex:0 0 auto;
+  display:flex;align-items:center;justify-content:center;
 }
+.badge .b-icon .icon{width:14px;height:14px;}
+@media(max-width:380px){ .hero-badges{gap:8px;} .badge{font-size:.74rem;padding-right:11px;gap:6px;} }
 .hero-photo-top{position:relative;margin:0 auto 28px;}
 .hero-photo-top img{width:100%;height:auto;display:block;}
 @media(max-width:640px){ .hero{padding-top:14px;} .hero-photo-top{margin-left:-12px;margin-right:-12px;} }
@@ -234,6 +238,8 @@ section{padding:56px 0;}
 .donate-inner{padding:44px 24px;}
 @media(max-width:480px){ .donate-inner{padding:36px 16px;} }
 .donate-card{max-width:640px;margin:0 auto;padding:30px 26px;background:#fff;box-shadow:none;}
+.donate-card h3 .h-icon{display:inline-flex;vertical-align:middle;margin-right:8px;color:var(--red);}
+.donate-card h3 .h-icon .icon{width:1.5em;height:1.5em;}
 .donate-card h3{font-family:var(--heading);font-weight:800;font-size:1.2rem;color:var(--red);margin-bottom:10px;text-align:center;}
 .donate-card > p{font-size:.9rem;color:var(--text-soft);font-weight:500;text-align:center;margin-bottom:22px;}
 .bank-box{background:var(--blush);border-radius:12px;padding:18px 20px;border:2px dashed var(--red);}
