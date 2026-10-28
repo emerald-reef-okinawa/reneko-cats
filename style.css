@@ -204,6 +204,14 @@ section{padding:56px 0;}
   transition:filter .15s ease;
 }
 .quick-card .qc-arrow{font-size:1.05em;}
+.quick-card .qc-title{
+  position:absolute;left:30.4%;top:6%;width:66%;
+  font-weight:800;font-size:10.8cqw;line-height:1.16;white-space:nowrap;
+  pointer-events:none;
+}
+html[lang=en] .quick-card .qc-title{font-size:8.6cqw;line-height:1.2;top:7.4%;}
+.qc-find .qc-title{color:#F16758;}
+.qc-support .qc-title{color:#F05979;}
 .qc-find .qc-btn{background:#FD6B5F;}
 .qc-support .qc-btn{background:#F65778;}
 .quick-card:hover .qc-btn{filter:brightness(1.06);}
