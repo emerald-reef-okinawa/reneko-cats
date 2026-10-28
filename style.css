@@ -192,7 +192,7 @@ section{padding:56px 0;}
 
 /* ---------- Quick links (hero) ---------- */
 .quick-links{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:640px;margin:26px auto 0;}
-.quick-card{display:block;position:relative;container-type:inline-size;border-radius:22px;transition:transform .15s ease;filter:drop-shadow(5px 5px 0 var(--pink));}
+.quick-card{display:block;position:relative;container-type:inline-size;border-radius:22px;transition:transform .15s ease;}
 .quick-card:hover{transform:translateY(-4px);}
 .quick-card img{width:100%;height:auto;display:block;}
 .quick-card .qc-btn{
