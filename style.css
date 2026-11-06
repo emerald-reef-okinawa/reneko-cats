@@ -291,6 +291,18 @@ html[lang=en] .quick-card .qc-title{font-size:8.6cqw;line-height:1.2;top:7.4%;}
 .donate-note{text-align:right;font-size:.8rem;font-weight:800;color:var(--red);max-width:620px;margin:0 auto 30px;}
 @media(max-width:480px){ .donate-note{text-align:left;} }
 
+
+/* ---------- Adoption agreement card ---------- */
+.agreement-card{background:var(--paper);border:var(--line);border-radius:var(--radius);box-shadow:var(--pop-shadow);padding:26px 24px;margin:0 auto 30px;text-align:center;}
+.agreement-card h3{font-weight:800;font-size:1.2rem;color:var(--red);margin-bottom:8px;}
+.agreement-card h3 .h-icon{display:inline-flex;vertical-align:middle;margin-right:8px;}
+.agreement-card h3 .h-icon .icon{width:1.5em;height:1.5em;}
+.agreement-card > p{font-size:.92rem;color:var(--text-soft);font-weight:500;}
+.agreement-card ul{list-style:none;text-align:left;margin:16px auto 14px;max-width:560px;display:grid;gap:9px;}
+.agreement-card li{position:relative;padding-left:22px;font-size:.88rem;color:var(--text);font-weight:500;line-height:1.6;}
+.agreement-card li::before{content:"";position:absolute;left:2px;top:.62em;width:9px;height:9px;border-radius:50%;background:var(--red);box-shadow:2px 2px 0 var(--pink);}
+.agreement-card .agr-note{font-size:.8rem;font-weight:800;color:var(--red);margin-bottom:16px;}
+
 .form-wrap{padding:14px;background:#fff;}
 .form-wrap iframe{width:100%;height:900px;border:none;border-radius:10px;}
 .form-fallback{text-align:center;margin-top:22px;}
