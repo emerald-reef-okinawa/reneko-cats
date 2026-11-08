@@ -330,7 +330,7 @@ const I18N = {
   'footer-contact':   { ja:'お問い合わせは<a href="https://www.instagram.com/reneko_malaysia/" target="_blank" rel="noopener">Instagram</a>まで', en:'For inquiries, please contact us on <a href="https://www.instagram.com/reneko_malaysia/" target="_blank" rel="noopener">Instagram</a>' },
 };
 
-function setLang(lang){
+function setLang(lang, remember = true){
   document.documentElement.lang = lang;
   for(const id in I18N){
     const el = document.getElementById(id);
@@ -338,13 +338,13 @@ function setLang(lang){
   }
   document.getElementById('lang-ja').classList.toggle('active', lang === 'ja');
   document.getElementById('lang-en').classList.toggle('active', lang === 'en');
-  try{ localStorage.setItem('reneko-lang', lang); }catch(e){}
+  if(remember){ try{ localStorage.setItem('reneko-lang-v2', lang); }catch(e){} }
 }
 
 (function(){
   let lang = 'en';
-  try{ lang = localStorage.getItem('reneko-lang') || 'en'; }catch(e){}
-  setLang(lang);
+  try{ lang = localStorage.getItem('reneko-lang-v2') || 'en'; }catch(e){}
+  setLang(lang, false);
 })();
 
 function openMenu(){
