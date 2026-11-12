@@ -59,8 +59,10 @@ header.site{
   .logo{gap:7px;}
   .logo img{width:38px;height:38px;}
   .logo small{font-size:.7rem;letter-spacing:.02em;}
-  .lang-toggle button{padding:0 10px;min-width:44px;}
+  .lang-toggle button{padding:0 8px;min-width:40px;}
 }
+@media(max-width:400px){ .logo small{font-size:.62rem;letter-spacing:.01em;gap:3px;} .nav-right{gap:6px;} }
+@media(max-width:365px){ .site-nav .logo small{display:none;} }
 .nav-right{display:flex;align-items:center;gap:8px;flex:0 0 auto;white-space:nowrap;}
 .site-nav .nav-links{display:flex;gap:2px;}
 .nav-links a{
@@ -361,7 +363,9 @@ html[lang=en] .quick-card .qc-title{font-size:8.6cqw;line-height:1.2;top:7.4%;}
   width:100%;max-width:100%;height:auto;aspect-ratio:3/2;border-radius:22px;position:relative;
   box-shadow:0 12px 28px rgba(226,70,45,.16);
 }
-.accent-wide .accent-photo img{object-position:50% 8%;}
+/* the cat's ear pops out above the frame: overlay shares the frame's scale and sits on top */
+.pop-wrap{position:relative;width:100%;margin-top:11.2%;}
+.cat-pop{position:absolute;left:0;top:-16.81%;width:100%;height:auto;z-index:2;pointer-events:none;}
 .accent-wide .accent-text h3{font-size:clamp(1.3rem,4.4vw,1.75rem);text-shadow:2px 2px 0 var(--pink);margin-bottom:8px;}
 .accent-wide .accent-text p{font-size:.95rem;}
 .motion-lines{
